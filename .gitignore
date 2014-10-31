@@ -1,0 +1,8 @@
+.nfs*
+*.csv
+*.pyc
+*.pkl
+*.swp
+.DS_Store
+training/5/*
+training/6/*
