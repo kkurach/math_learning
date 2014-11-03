@@ -66,6 +66,13 @@ class ExprMatrix(object):
     self.hashval = np.mod(np.sum(np.mod(mult, P), axis=1), P)
 
   def ElementwiseMultiply(self, other):
+    def getdim(val):
+      if val == manage.config.N:
+        return "n"
+      elif val == manage.config.M:
+        return "m"
+      else:
+        return "1"
     if isinstance(other, (int, long, float, np.int64)):
       expressions = np.multiply(self.expressions, other)
       comp = {k: "(%s * %s)" % \
@@ -77,9 +84,32 @@ class ExprMatrix(object):
     if (powers > manage.config.MAXPOWER).any():
       return None
     expressions = self.expressions * other.expressions
+
+    a = self.comp[MATLAB]
+    b = other.comp[MATLAB]
+    sa = self.expressions.shape
+    sb = other.expressions.shape
+    N = manage.config.N
+    M = manage.config.M
+    if sa != sb:
+      flipped = False
+      if sb[0] < sa[0] or sb[1] < sa[1]:
+        a, b = b, a
+        sa, sb = sb, sa
+        flipped = True
+      if sa[0] < sb[0] and sa[1] < sb[1]:
+        a = 'repmat(%s, %s, %s)' % (a, getdim(sb[0]), getdim(sb[1]))
+      elif sa[0] < sb[0]:
+        a = 'repmat(%s, %s, 1)' % (a, getdim(sb[0]))
+      else:
+        a = 'repmat(%s, 1, %s)' % (a, getdim(sb[1]))
+      if flipped:
+        a, b = b, a
+        sa, sb = sb, sa
+    matlab = '(%s .* %s)' % (a, b)
     comp = {NUMPY: '(%s * %s)' % (self.comp[NUMPY], other.comp[NUMPY]),
             THEANO: '(%s * %s)' % (self.comp[THEANO], other.comp[THEANO]),
-            MATLAB: '(%s .* %s)' % (self.comp[MATLAB], other.comp[MATLAB]),
+            MATLAB: matlab,
             THIS: '(%s).ElementwiseMultiply(%s)' % \
               (self.comp[THIS], other.comp[THIS]),
             APPLIED_RULES: (3, self.comp[APPLIED_RULES], other.comp[APPLIED_RULES]),

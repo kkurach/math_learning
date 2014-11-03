@@ -178,11 +178,6 @@ class Scheduler(object):
     weights, comps = self.solution
     if len(weights) == 0:
       return False
-    #print
-    #print "Applied rules:"
-    #for c in comps:
-    #  print c[APPLIED_RULES]
-    #manage.config.EXPR_IMPL.SolutionStr(weights, comps)
     return True
 
   def GetExpressions(self):
@@ -202,5 +197,11 @@ class Scheduler(object):
       self.Apply(rule, expr1, expr2)
       if self.FoundTarget():
         return
+    raise TargetNotFound("No new expression before FoundTarget")
 
-    assert False, "No new expression before FoundTarget"
+class TargetNotFound(Exception):
+  def __init__(self, value):
+    self.value = value
+
+  def __str__(self):
+    return repr(self.value)

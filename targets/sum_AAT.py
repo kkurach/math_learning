@@ -2,6 +2,7 @@ import numpy as np
 from targets.target import Target
 import copy
 import manage.config
+from manage.config import MATLAB
 
 class SumAAT(Target):
 
@@ -13,7 +14,7 @@ class SumAAT(Target):
     self.Compute()
 
   def Compute(self):
-    manage.config.N, manage.config.M = 2, 3
+    manage.config.N, manage.config.M = 5, 6
     manage.config.MAXPOWER = np.array([self.k])
     [A] = self.SetStartSymbols(1)
     aT = A.Transpose()
@@ -24,6 +25,7 @@ class SumAAT(Target):
       else:
         target = target.Multiply(A)
     target = target.Marginalize(axis=None)
+    target.comp[MATLAB] = "n = 100;\nm = 200;\nA = randn(n, m);\noriginal = " + target.comp[MATLAB] + ";\n"
     self.target_mat = target
 
   def __str__(self):

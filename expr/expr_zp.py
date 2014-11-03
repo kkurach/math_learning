@@ -126,6 +126,18 @@ class ExprZp(expr_abstract.ExprAbstract):
     return weights, comps
 
   @classmethod
+  def ToFrac(cls, number):
+    frac_range = 50
+    if abs(number) <= frac_range:
+      return "%d" % number
+    for i in range(-frac_range, frac_range):
+      if i == 0:
+        continue
+      if abs((number * i) % PRIME) <= frac_range:
+        return "(%d / %d)" % ((number * i) % PRIME, i)
+    raise Exception("Not a frac")
+  
+  @classmethod
   def SolutionStr(cls, weights, comps):
     from manage.config import NUMPY, THEANO, MATLAB, THIS
     backs = [NUMPY, THEANO, MATLAB, THIS]

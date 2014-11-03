@@ -3,6 +3,7 @@ from expr.expr_matrix import ExprMatrix
 from expr.expr_abstract import ExprAbstract
 from targets.target import Target
 import manage.config
+from manage.config import MATLAB
 
 class RBM(Target):
   def __init__(self, power):
@@ -61,5 +62,21 @@ class RBM(Target):
         h = hs[h_iter]
         singles.append(vW.Multiply(h).Power(self.power))
     target = ExprAbstract.AddManyExpressions(singles)
+    matlab = '''n = 7;
+m = 8;
+A = randn(n, m);
+nset = dec2bin(0:(2^(n) - 1));
+mset = dec2bin(0:(2^(m) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  for j = 1:size(mset, 1)
+    v = logical(nset(i, :) - '0');
+    h = logical(mset(j, :) - '0');
+    original = original + (v * A * h') ^ %d;
+  end
+end
+''' % self.power
+    target.comp[MATLAB] = matlab
+
     self.target_mat = target
 

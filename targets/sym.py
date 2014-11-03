@@ -3,6 +3,7 @@ from expr.expr_matrix import ExprMatrix
 from expr.expr_abstract import ExprAbstract
 from targets.target import Target
 import manage.config
+from manage.config import MATLAB
 import itertools
 
 class Sym(Target):
@@ -34,5 +35,14 @@ class Sym(Target):
       else:
         target = target + expr
     target = np.array([[target]])
-    target = ExprMatrix(comp="", expressions=target, powers=manage.config.MAXPOWER)
+    matlab = '''n=1;
+m = 12;
+A = randn(1, m);
+sub = nchoosek(1:m, %s);
+original = 0;
+for i = 1:size(sub, 1)
+  original = original + prod(A(sub(i, :)));
+end
+''' % self.power
+    target = ExprMatrix(comp={MATLAB: matlab}, expressions=target, powers=manage.config.MAXPOWER)
     self.target_mat = target

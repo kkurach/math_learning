@@ -3,12 +3,10 @@ import sys
 import manage.config
 from strategies.brute_force import BruteForceScheduler
 from strategies.ngram import NgramScheduler
-from strategies.tnn_strategy import TNNScheduler
 from targets.sum_AAT import SumAAT
 from targets.sum_AB import SumAB
 from targets.sum_AmultA import SumAmultA
 from targets.rbm import RBM
-from targets.rbm_sparse import RBMSparse
 from targets.sym import Sym
 from targets.rbm_oneside import RBMOneSide
 from expr.expr_zp import ExprZp
@@ -56,7 +54,7 @@ def transfer(scheduler, params, targets, maxpower=5):
         print "times=", times
     record(fname, scores, times)
 
-def execute_once(run_id, scheduler, params, target, maxpower):
+def execute_once(run_id, scheduler, params, target, maxpower, record_it=True, until_exception=False):
   scores = -1 * np.ones((maxpower), dtype=np.int32)
   times = -1 * np.ones_like(scores)
   params['run_id'] = run_id
@@ -67,10 +65,11 @@ def execute_once(run_id, scheduler, params, target, maxpower):
   comp_fnames = {}
   comp_fnames['trees'] = 'results/trees/%s_%s.tree' % (str(sched), target.__name__)
   comp_fnames['matlab'] = 'results/matlab/%s_%s.m' % (str(sched), target.__name__)
-  if os.path.isfile(fname):
-    print "File %s exists." % fname 
-    return
-  print "Working to produce file %s." % fname
+  if record_it:
+    if os.path.isfile(fname):
+      print "File %s exists." % fname 
+      return
+    print "Working to produce file %s." % fname
 
   for k in range(1, scores.shape[0]):
     t = target(k)
@@ -80,7 +79,7 @@ def execute_once(run_id, scheduler, params, target, maxpower):
     start = time.time()
     try:
       signal.signal(signal.SIGALRM, handler)
-      signal.alarm(60 * 10)
+      signal.alarm(10 * 60)
       sched.Run()
       solution_tree = [s[APPLIED_RULES] for s in sched.solution[1]]
       comps['trees'].append([s[READABLE_RULES] for s in sched.solution[1]])
@@ -91,42 +90,54 @@ def execute_once(run_id, scheduler, params, target, maxpower):
       times[k] = (int)(time.time() - start)
     except OSError, exc:
       print "Exception", exc
+      if until_exception:
+        break
     print "Executing schedule %s with params %s on the target %s" % \
       (str(sched), str(params), str(t))
     print "scores=", scores
     print "times=", times
     signal.alarm(0)
  
-  record(fname, scores, times)
-  for name in ['matlab', 'trees']:
-    comp = comps[name]
-    comp_fname = comp_fnames[name]
-    with open(comp_fname, 'w') as f:
-      for c in comp:
-        if name == 'trees':
-          for i, t in enumerate(c):
-            if i > 0:
-              f.write('@@@@@')
-            f.write(str(t))
-        else:
-          for i, (w, t) in enumerate(c):
-            f.write(str(w) + " * " + str(t))
-            if i < len(c) - 1:
-              f.write(" + ")
-        f.write('\n')
+  if record_it:
+    record(fname, scores, times)
+    for name in ['matlab', 'trees']:
+      comp = comps[name]
+      comp_fname = comp_fnames[name]
+      path = comp_fname[:comp_fname.rfind("/")]
+      if not os.path.exists(path):
+        os.makedirs(path)
+      with open(comp_fname, 'w') as f:
+        for c in comp:
+          if name == 'trees':
+            for i, t in enumerate(c):
+              if i > 0:
+                f.write('@@@@@')
+              f.write(str(t))
+          else:
+            for i, (w, t) in enumerate(c):
+              f.write(str(w) + " * " + str(t))
+              if i < len(c) - 1:
+                f.write(" + ")
+          f.write('\n')
+  return comps
 
-def execute(scheduler, params, target, maxpower=12):
+def execute(scheduler, params, target, maxpower=12, record_it=False):
   manage.config.NUM_EVAL = manage.config.NUM_HASH
   manage.config.EXPR_IMPL = ExprZp
   trials = params['trials']
+  all_comps = []
   for i in xrange(trials):
-    execute_once(i, scheduler, params, target, maxpower)
+    all_comps.append(execute_once(i, scheduler, params, target, maxpower, record_it))
+  return all_comps
 
 def handler(*_):
   print "Forever is over!"
   raise OSError("end of time")
 
 def record(fname, scores, times):
+  path = fname[:fname.rfind("/")]
+  if not os.path.exists(path):
+    os.makedirs(path)
   with open(fname, 'w') as f:
     f.write("scores=" + str(scores))
     f.write("\n")
@@ -134,8 +145,7 @@ def record(fname, scores, times):
 
 def main():
   schedulers = {'brute_force': BruteForceScheduler,
-                'ngram': NgramScheduler,
-                'tnn': TNNScheduler}
+                'ngram': NgramScheduler}
   targets = {'sum_AAT': SumAAT,
              'sum_AB': SumAB,
              'sum_AmultA': SumAmultA,
@@ -154,6 +164,7 @@ def main():
   scheduler = schedulers[scheduler]
   target = targets[target]
   execute(scheduler, params, target, maxpower=15)
+  print "\n\nExecution results are stored in the results/ directory\n\n"
 
 if __name__ == '__main__':
   main()

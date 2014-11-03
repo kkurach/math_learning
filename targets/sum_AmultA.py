@@ -2,6 +2,7 @@ import numpy as np
 from targets.target import Target
 import copy
 import manage.config
+from manage.config import MATLAB
 
 class SumAmultA(Target):
 
@@ -14,7 +15,7 @@ class SumAmultA(Target):
     self.Compute()
 
   def Compute(self):
-    manage.config.N, manage.config.M = 2, 3
+    manage.config.N, manage.config.M = 3, 4
     manage.config.MAXPOWER = np.array([1000])
     [A] = self.SetStartSymbols(1)
     aT = A.Transpose()
@@ -29,6 +30,7 @@ class SumAmultA(Target):
         target = target.Multiply(A2)
         power += 2
     target = target.Marginalize(axis=None)
+    target.comp[MATLAB] = "n = 100;\nm = 200;\nA = randn(n, m);\noriginal = " + target.comp[MATLAB] + ";\n"
     self.target_mat = target
     manage.config.MAXPOWER = np.array([power])
 

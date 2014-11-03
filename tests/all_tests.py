@@ -1,31 +1,27 @@
 #!/usr/bin/python
 import sys
+sys.path.insert(0, '../')
 import unittest
 import manage.config
-#from tests.scheduler_test import SchedulerTests
+from tests.scheduler_test import SchedulerTests
+from tests.matlab_eval_test import MatlabEvaluationTests
 from tests.solver_test import SolverTests
 from tests.expr_symbolic_test import ExprSymbolicTests
 from tests.expr_zp_test import ExprZpTests
 from tests.expr_matrix_symbolic_test import ExprMatrixSymbolicTests
 from tests.expr_matrix_zp_test import ExprMatrixZpTests
 
-def RunTests(with_buffer, test_number=-1, test_name=None):
+def RunTests(with_buffer, test_number=-1, test_name=None, with_end2end=True):
   c = manage.config.get()
   testmodules = [
-    #SchedulerTests,
+    SchedulerTests,
     SolverTests,
     ExprSymbolicTests,
     ExprZpTests,
     ExprMatrixSymbolicTests,
     ExprMatrixZpTests,
+    MatlabEvaluationTests
     ]
-  #if with_end2end:
-  #  from end2end_test import End2EndZpTests, End2EndSymbolicTests
-  #  end2end = [
-  #    End2EndZpTests,
-  #    End2EndSymbolicTests,
-  #  ]
-  #  testmodules += end2end
   if test_number != -1:
     testmodules = [testmodules[test_number]]
   totalTestsRun = 0

@@ -4,5 +4,10 @@
 *.pkl
 *.swp
 .DS_Store
-training/5/*
-training/6/*
+results/*
+tests/code.m
+paper/code.m
+*.aux
+*.bbl
+*.log
+*.out
