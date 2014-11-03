@@ -17,10 +17,18 @@
 \usepackage{subcaption}
 \usepackage{listings}
 
+\lstloadlanguages{Matlab}
+
 \lstset{
+  language=Matlab,
   frame=single,
   breaklines=true,
+  basicstyle=\tiny,
   postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}
+}
+
+\newcommand{\script}[2]{
+\lstinputlisting{#1}
 }
 
 %\usepackage{lmodern}
@@ -557,7 +565,7 @@ its depth \cite{saxe2013exact}. Without this, the RNN overfits badly,
 producing test accuracies of $\sim 1\%$.
 \item Rectified linear units work much better in this setting than tanh
   activation functions.
-\item We learn using a curriculum \cite{Bengio09}, starting with the simplest
+\item We learn using a curriculum \cite{Bengio09, zaremba2014learning}, starting with the simplest
   expressions of low degree and slowly increasing $k$.  
 \item The weight matrix in the softmax classifier has much larger
   ($\times100$) learning rate than the rest of the layers. This
@@ -897,8 +905,19 @@ The authors would like to thank Facebook and Microsoft Research for their suppor
 We present solutions of efficient computations discovered by our system. Solutions are provided
 in Matlab-syntax. Examples contains computation for the original formulas, and formulas derived by our system.
 We provide snippets of code allowing to verify correctness. Size of matrices $n$, $m$ can be chosen
-arbitrary. 
+arbitrary. Purpose of this supplementary material is to show that our expressions can be highly
+non-trivial.
+
+
+Code generating our expressions can be downloaded from \url{https://github.com/kkurach/math_learning}.
+Particularly, this tex file is available at \url{https://github.com/kkurach/math_learning/paper/}.
+
 \input{sup}
 
+{\bf k = 5}
+\script{sup_rbm5.m}
+
+{\bf k = 6}
+\script{sup_rbm6.m}
 
 \end{document}

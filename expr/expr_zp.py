@@ -127,7 +127,7 @@ class ExprZp(expr_abstract.ExprAbstract):
 
   @classmethod
   def ToFrac(cls, number):
-    frac_range = 50
+    frac_range = 100
     if abs(number) <= frac_range:
       return "%d" % number
     for i in range(-frac_range, frac_range):

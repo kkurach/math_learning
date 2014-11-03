@@ -12,7 +12,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum(A, 1)), 2));
 
-optimized = 1 * ((sum(((sum(A, 1))'), 1)));
+optimized = 1 * ((sum(((sum((A'), 1))'), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -26,7 +26,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum((A * (A')), 1)), 2));
 
-optimized = 1 * ((sum((A * (sum((A'), 2))), 1)));
+optimized = 1 * ((sum((A * ((sum(A, 1))')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -40,7 +40,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum(((A * (A')) * A), 1)), 2));
 
-optimized = 1 * ((sum(((((A * ((sum(A, 1))'))') * A)'), 1)));
+optimized = 1 * ((sum((A * (((sum((A'), 1)) * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -54,7 +54,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum((((A * (A')) * A) * (A')), 1)), 2));
 
-optimized = 1 * ((sum(((A * ((((A * (sum((A'), 2)))') * A)'))'), 2)));
+optimized = 1 * ((sum((A * ((((A * ((sum(A, 1))'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -68,7 +68,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum(((((A * (A')) * A) * (A')) * A), 1)), 2));
 
-optimized = 1 * ((sum(((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'), 1)));
+optimized = 1 * ((sum((A * ((((A * (((sum((A'), 1)) * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -82,7 +82,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum((((((A * (A')) * A) * (A')) * A) * (A')), 1)), 2));
 
-optimized = 1 * ((sum(((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))'), 2)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -96,7 +96,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum(((((((A * (A')) * A) * (A')) * A) * (A')) * A), 1)), 2));
 
-optimized = 1 * ((sum(((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'), 1)));
+optimized = 1 * ((sum((A * ((((A * ((((A * (((sum((A'), 1)) * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -110,7 +110,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum((((((((A * (A')) * A) * (A')) * A) * (A')) * A) * (A')), 1)), 2));
 
-optimized = 1 * ((sum(((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))'), 2)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -124,7 +124,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum(((((((((A * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A), 1)), 2));
 
-optimized = 1 * ((sum(((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'), 1)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((((A * (((sum((A'), 1)) * A)'))') * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -138,7 +138,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum((((((((((A * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')), 1)), 2));
 
-optimized = 1 * ((sum(((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'))'), 2)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -152,7 +152,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum(((((((((((A * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A), 1)), 2));
 
-optimized = 1 * ((sum(((((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)'), 1)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((((A * ((((A * (((sum((A'), 1)) * A)'))') * A)'))') * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -166,7 +166,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum((((((((((((A * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')), 1)), 2));
 
-optimized = 1 * ((sum(((A * ((((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)'))'), 2)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -180,7 +180,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum(((((((((((((A * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A), 1)), 2));
 
-optimized = 1 * ((sum(((((A * ((((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)'), 1)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((((A * ((((A * ((((A * (((sum((A'), 1)) * A)'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -194,7 +194,7 @@ m = 200;
 A = randn(n, m);
 original = (sum((sum((((((((((((((A * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')) * A) * (A')), 1)), 2));
 
-optimized = 1 * ((sum(((A * ((((A * ((((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)'))'), 2)));
+optimized = 1 * ((sum((A * ((((A * ((((A * ((((A * ((((A * ((((A * ((((A * ((sum(A, 1))'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)'))') * A)')), 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -213,7 +213,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum(A, 1)), 2));
 
-optimized = 1 * ((sum((sum(A, 2)), 1)));
+optimized = 1 * ((sum((sum(A, 1)), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -228,7 +228,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum((A * B), 1)), 2));
 
-optimized = 1 * (((sum((B'), 1)) * (sum((A'), 2))));
+optimized = 1 * (((sum(A, 1)) * (sum(B, 2))));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -243,7 +243,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum(((A * B) * A), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (sum(A, 2)))), 1)));
+optimized = 1 * ((sum((((sum(A, 1)) * B) * A), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -258,7 +258,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum((((A * B) * A) * B), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (sum(B, 2))))), 1)));
+optimized = 1 * ((sum(((((sum(A, 1)) * B) * A) * B), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -273,7 +273,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum(((((A * B) * A) * B) * A), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (sum(A, 2)))))), 1)));
+optimized = 1 * ((sum((((((sum(A, 1)) * B) * A) * B) * A), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -288,7 +288,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum((((((A * B) * A) * B) * A) * B), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (sum(B, 2))))))), 1)));
+optimized = 1 * ((sum(((((((sum(A, 1)) * B) * A) * B) * A) * B), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -303,7 +303,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum(((((((A * B) * A) * B) * A) * B) * A), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (sum(A, 2)))))))), 1)));
+optimized = 1 * ((sum((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -318,7 +318,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum((((((((A * B) * A) * B) * A) * B) * A) * B), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (A * (sum(B, 2))))))))), 1)));
+optimized = 1 * ((sum(((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -333,7 +333,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum(((((((((A * B) * A) * B) * A) * B) * A) * B) * A), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (A * (B * (sum(A, 2)))))))))), 1)));
+optimized = 1 * ((sum((((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B) * A), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -348,7 +348,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum((((((((((A * B) * A) * B) * A) * B) * A) * B) * A) * B), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (A * (B * (A * (sum(B, 2))))))))))), 1)));
+optimized = 1 * ((sum(((((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B) * A) * B), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -363,7 +363,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum(((((((((((A * B) * A) * B) * A) * B) * A) * B) * A) * B) * A), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (A * (B * (A * (B * (sum(A, 2)))))))))))), 1)));
+optimized = 1 * ((sum((((((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -378,7 +378,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum((((((((((((A * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (A * (B * (A * (B * (A * (sum(B, 2))))))))))))), 1)));
+optimized = 1 * ((sum(((((((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -393,7 +393,7 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum(((((((((((((A * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (A * (B * (A * (B * (A * (B * (sum(A, 2)))))))))))))), 1)));
+optimized = 1 * ((sum((((((((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}
@@ -408,7 +408,372 @@ A = randn(n, m);
 B = randn(m, n);
 original = (sum((sum((((((((((((((A * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B), 1)), 2));
 
-optimized = 1 * ((sum((A * (B * (A * (B * (A * (B * (A * (B * (A * (B * (A * (B * (A * (sum(B, 2))))))))))))))), 1)));
+optimized = 1 * ((sum(((((((((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B), 2)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 15}
+
+\begin{lstlisting}
+n = 100;
+m = 200;
+A = randn(n, m);
+B = randn(m, n);
+original = (sum((sum(((((((((((((((A * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A), 1)), 2));
+
+optimized = 1 * ((sum((((((((((((((((sum(A, 1)) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A) * B) * A), 2)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+\subsection{$\mathbf{(\sum (A.*A)A^T})_k$}
+
+
+
+{\bf k = 1}
+
+\begin{lstlisting}
+n = 100;
+m = 200;
+A = randn(n, m);
+original = (sum((sum(A, 1)), 2));
+
+optimized = 1 * ((sum((sum(A, 2)), 1)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 2}
+
+\begin{lstlisting}
+n = 100;
+m = 200;
+A = randn(n, m);
+original = (sum((sum((A * (A')), 1)), 2));
+
+optimized = 1 * ((sum(((sum(A, 1)) .* (sum(A, 1))), 2)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 3}
+
+\begin{lstlisting}
+n = 100;
+m = 200;
+A = randn(n, m);
+original = (sum((sum(((A * (A')) * (A .* A)), 1)), 2));
+
+optimized = 1 * ((sum((sum(((repmat((sum((repmat((sum(A, 1)), n, 1) .* A), 2)), 1, m) .* A) .* A), 2)), 1)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 4}
+
+\begin{lstlisting}
+n = 100;
+m = 200;
+A = randn(n, m);
+original = (sum((sum((((A * (A')) * (A .* A)) * (A')), 1)), 2));
+
+optimized = 1 * ((sum((sum((repmat((sum((repmat((sum(((repmat((sum(A, 1)), n, 1) .* A) .* A), 2)), 1, m) .* A), 1)), n, 1) .* A), 2)), 1)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+\subsection{{\bf Sym$_k$}}
+
+
+
+{\bf k = 1}
+
+\begin{lstlisting}
+n = 1;
+m = 18;
+A = randn(1, m);
+sub = nchoosek(1:m, 1);
+original = 0;
+for i = 1:size(sub, 1)
+  original = original + prod(A(sub(i, :)));
+end
+
+optimized = 1 * ((sum(A, 2)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 2}
+
+\begin{lstlisting}
+n = 1;
+m = 18;
+A = randn(1, m);
+sub = nchoosek(1:m, 2);
+original = 0;
+for i = 1:size(sub, 1)
+  original = original + prod(A(sub(i, :)));
+end
+
+optimized = (1 / 2) * (((sum(A, 2)) * (sum(A, 2)))) + (50 / -100) * ((A * (A')));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 3}
+
+\begin{lstlisting}
+n = 1;
+m = 18;
+A = randn(1, m);
+sub = nchoosek(1:m, 3);
+original = 0;
+for i = 1:size(sub, 1)
+  original = original + prod(A(sub(i, :)));
+end
+
+optimized = (1 / 6) * ((sum(((sum(A, 2)) * ((sum(A, 2)) * A)), 2))) + (50 / -100) * ((A * (((sum(A, 2)) * A)'))) + (1 / 3) * (((A .* A) * (A')));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 4}
+
+\begin{lstlisting}
+n = 1;
+m = 18;
+A = randn(1, m);
+sub = nchoosek(1:m, 4);
+original = 0;
+for i = 1:size(sub, 1)
+  original = original + prod(A(sub(i, :)));
+end
+
+optimized = (25 / -100) * ((A * (((sum(A, 2)) * ((sum(A, 2)) * A))'))) + (1 / 8) * ((A * ((A * ((A') * A))'))) + (1 / 3) * (((A * ((A') .* (A'))) * (sum(A, 2)))) + (25 / -100) * (((((A') .* (A'))') * ((A') .* (A')))) + (1 / 24) * ((sum(((sum(((sum(A, 2)) * ((sum(A, 2)) * A)), 2)) * A), 2)));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+\subsection{{\bf (RBM-1)$_k$}}
+
+
+
+{\bf k = 1}
+
+\begin{lstlisting}
+n = 14;
+m = 1;
+A = randn(1, n);
+nset = dec2bin(0:(2^(n) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  v = logical(nset(i, :) - '0');
+  original = original + (v * A') ^ 1;
+end
+
+optimized = 2^(n - 3) * (4 * ((sum((A'), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 2}
+
+\begin{lstlisting}
+n = 14;
+m = 1;
+A = randn(1, n);
+nset = dec2bin(0:(2^(n) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  v = logical(nset(i, :) - '0');
+  original = original + (v * A') ^ 2;
+end
+
+optimized = 2^(n - 3) * (2 * ((sum(((A .* A)'), 1))) + 2 * ((sum(((A') .* repmat((sum((A'), 1)), m, 1)), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 3}
+
+\begin{lstlisting}
+n = 14;
+m = 1;
+A = randn(1, n);
+nset = dec2bin(0:(2^(n) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  v = logical(nset(i, :) - '0');
+  original = original + (v * A') ^ 3;
+end
+
+optimized = 2^(n - 4) * (6 * ((sum((((((A') .* repmat((sum((A'), 1)), m, 1))') .* A)'), 1))) + 2 * ((sum(((A') .* repmat((sum(((A') .* repmat((sum((A'), 1)), m, 1)), 1)), m, 1)), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 4}
+
+\begin{lstlisting}
+n = 14;
+m = 1;
+A = randn(1, n);
+nset = dec2bin(0:(2^(n) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  v = logical(nset(i, :) - '0');
+  original = original + (v * A') ^ 4;
+end
+
+optimized = 2^(n - 5) * (12 * (((sum(((A .* A)'), 1)) .* (sum(((A') .* repmat((sum((A'), 1)), m, 1)), 1)))) + 6 * (((sum(((A .* A)'), 1)) .* (sum(((A .* A)'), 1)))) + 2 * ((sum(((A') .* repmat((sum(((A') .* repmat((sum(((A') .* repmat((sum((A'), 1)), m, 1)), 1)), m, 1)), 1)), m, 1)), 1))) + -4 * ((sum(((((((A .* A)') .* (A'))') .* A)'), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 5}
+
+\begin{lstlisting}
+n = 14;
+m = 1;
+A = randn(1, n);
+nset = dec2bin(0:(2^(n) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  v = logical(nset(i, :) - '0');
+  original = original + (v * A') ^ 5;
+end
+
+optimized = 2^(n - 6) * (30 * (((sum(((A .* A)'), 1)) .* (sum((((((A') .* repmat((sum((A'), 1)), m, 1))') .* A)'), 1)))) + 20 * (((sum(((A .* A)'), 1)) .* (sum(((A') .* repmat((sum(((A') .* repmat((sum((A'), 1)), m, 1)), 1)), m, 1)), 1)))) + -20 * ((sum(((A') .* repmat((sum(((((((A .* A)') .* (A'))') .* A)'), 1)), m, 1)), 1))) + 2 * ((sum(((A') .* repmat((sum(((A') .* repmat((sum(((A') .* repmat((sum(((A') .* repmat((sum((A'), 1)), m, 1)), 1)), m, 1)), 1)), m, 1)), 1)), m, 1)), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 6}
+
+\begin{lstlisting}
+n = 14;
+m = 1;
+A = randn(1, n);
+nset = dec2bin(0:(2^(n) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  v = logical(nset(i, :) - '0');
+  original = original + (v * A') ^ 6;
+end
+
+optimized = 2^(n - 7) * (30 * ((sum(((((((A') .* repmat((sum(((A .* A)'), 1)), m, 1))') .* repmat((sum(((A .* A)'), 1)), 1, m))') .* (A')), 1))) + -60 * (((sum(((((((A .* A)') .* (A'))') .* A)'), 1)) .* (sum(((A .* A)'), 1)))) + 90 * ((sum((((((A') .* repmat((sum(((A .* A)'), 1)), m, 1))') .* repmat((sum(((A') .* repmat((sum(((A .* A)'), 1)), m, 1)), 1)), 1, m))'), 1))) + -60 * ((sum(((A') .* repmat((sum(((A') .* repmat((sum(((((((A .* A)') .* (A'))') .* A)'), 1)), m, 1)), 1)), m, 1)), 1))) + 2 * ((sum(((A') .* repmat((sum(((A') .* repmat((sum(((A') .* repmat((sum(((A') .* repmat((sum(((A') .* repmat((sum((A'), 1)), m, 1)), 1)), m, 1)), 1)), m, 1)), 1)), m, 1)), 1)), m, 1)), 1))) + 30 * ((sum(((A') .* repmat((sum(((A') .* repmat((sum(((A') .* repmat((sum((((((A') .* repmat((sum((A'), 1)), m, 1))') .* A)'), 1)), m, 1)), 1)), m, 1)), 1)), m, 1)), 1))) + 32 * ((sum(((((((((((A .* A)') .* (A'))') .* A)') .* (A'))') .* A)'), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+\subsection{{\bf (RBM-2)$_k$}}
+
+
+
+{\bf k = 1}
+
+\begin{lstlisting}
+n = 7;
+m = 8;
+A = randn(n, m);
+nset = dec2bin(0:(2^(n) - 1));
+mset = dec2bin(0:(2^(m) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  for j = 1:size(mset, 1)
+    v = logical(nset(i, :) - '0');
+    h = logical(mset(j, :) - '0');
+    original = original + (v * A * h') ^ 1;
+  end
+end
+
+optimized = 2^(n + m - 5) * (8 * ((sum(((sum(A, 1))'), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 2}
+
+\begin{lstlisting}
+n = 7;
+m = 8;
+A = randn(n, m);
+nset = dec2bin(0:(2^(n) - 1));
+mset = dec2bin(0:(2^(m) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  for j = 1:size(mset, 1)
+    v = logical(nset(i, :) - '0');
+    h = logical(mset(j, :) - '0');
+    original = original + (v * A * h') ^ 2;
+  end
+end
+
+optimized = 2^(n + m - 5) * (2 * ((sum((sum((((sum(A, 2)) * (sum(A, 1)))'), 1)), 2))) + 2 * ((((sum(A, 2))') * (sum(A, 2)))) + 2 * (((sum(A, 1)) * ((sum(A, 1))'))) + 2 * ((sum(((sum((A .* A), 1))'), 1))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 3}
+
+\begin{lstlisting}
+n = 7;
+m = 8;
+A = randn(n, m);
+nset = dec2bin(0:(2^(n) - 1));
+mset = dec2bin(0:(2^(m) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  for j = 1:size(mset, 1)
+    v = logical(nset(i, :) - '0');
+    h = logical(mset(j, :) - '0');
+    original = original + (v * A * h') ^ 3;
+  end
+end
+
+optimized = 2^(n + m - 7) * (12 * ((sum((((A * ((sum(A, 1))'))') * A), 2))) + 2 * ((sum(((((sum(((sum(A, 1))'), 1)) * (sum(A, 1)))') * (sum((sum(A, 1)), 2))), 1))) + 6 * ((sum(((sum(((repmat((sum(((sum(A, 1))'), 1)), n, m) .* A) .* A), 1))'), 1))) + 6 * ((sum((sum(((((sum(A, 1))') * (sum((A'), 1))) * A), 1)), 2))) + 6 * (((sum((sum(A, 1)), 2)) * ((sum(A, 1)) * ((sum(A, 1))')))));
+normalization = sum(abs(original(:)));
+assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
+\end{lstlisting}
+
+
+{\bf k = 4}
+
+\begin{lstlisting}
+n = 7;
+m = 8;
+A = randn(n, m);
+nset = dec2bin(0:(2^(n) - 1));
+mset = dec2bin(0:(2^(m) - 1));
+original = 0;
+for i = 1:size(nset, 1)
+  for j = 1:size(mset, 1)
+    v = logical(nset(i, :) - '0');
+    h = logical(mset(j, :) - '0');
+    original = original + (v * A * h') ^ 4;
+  end
+end
+
+optimized = 2^(n + m - 9) * (48 * (((sum(A, 1)) * ((sum(((((sum(A, 2)) * (sum(A, 1)))') * A), 1))'))) + -4 * (((sum((repmat((sum(A, 1)), n, 1) .* A), 1)) * ((sum((repmat((sum(A, 1)), n, 1) .* A), 1))'))) + 8 * ((sum((sum((((A .* A) .* A) .* A), 1)), 2))) + 6 * ((((((sum(A, 2))') * (sum(A, 2))) * ((sum(A, 2))')) * (sum(A, 2)))) + -4 * (((sum((((((A') .* repmat(((sum(A, 2))'), m, 1))') .* repmat((sum(A, 2)), 1, m))'), 1)) * (sum(A, 2)))) + 6 * (((sum(A, 1)) * ((sum(((A * ((sum(A, 1))')) * (sum(A, 1))), 1))'))) + 12 * (((sum((sum(A, 2)), 1)) * (sum((sum(((((sum(A, 2)) * (sum(A, 1)))') * A), 2)), 1)))) + -12 * (((sum(((A .* A)'), 1)) * ((sum(((A .* A)'), 1))'))) + 24 * (((sum(A, 1)) * ((((A * ((sum(A, 1))'))') * A)'))) + 12 * (((sum((sum(A, 2)), 1)) * ((sum((sum(A, 1)), 2)) * ((sum(A, 1)) * ((sum(A, 1))'))))) + 2 * (((sum((sum((((sum(A, 2)) * (sum(A, 1)))'), 1)), 2)) * (sum((sum((((sum(A, 2)) * (sum(A, 1)))'), 1)), 2)))) + 6 * ((sum((sum(((repmat((sum(((sum((A .* A), 1))'), 1)), n, m) .* A) .* A), 1)), 2))) + 12 * (((sum((sum(A, 2)), 1)) * (sum((sum(((repmat((sum(((sum(A, 1))'), 1)), n, m) .* A) .* A), 1)), 2)))) + 12 * ((sum((sum(((A * ((sum(A, 1))')) * (sum((A .* A), 1))), 1)), 2))) + -24 * (((sum(A, 1)) * ((sum(((repmat((sum(A, 1)), n, 1) .* A) .* A), 1))'))) + 12 * (((sum((sum((A .* A), 1)), 2)) * (((sum(A, 2))') * (sum(A, 2))))) + 12 * (((sum(A, 1)) * (sum(((((sum(A, 2)) * (sum(A, 1)))') * A), 2)))) + 24 * (((((sum(A, 2))') * A) * ((((sum(A, 2))') * A)'))) + 12 * ((sum(((sum((((A') * A) .* ((A') * A)), 1))'), 1))) + -12 * (((sum((A .* A), 1)) * ((sum((A .* A), 1))'))) + -24 * (((sum(((A') .* repmat(((sum(A, 2))'), m, 1)), 1)) * (sum((A .* A), 2)))));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);
 \end{lstlisting}

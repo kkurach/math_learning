@@ -35,8 +35,8 @@ class Sym(Target):
       else:
         target = target + expr
     target = np.array([[target]])
-    matlab = '''n=1;
-m = 12;
+    matlab = '''n = 1;
+m = 18;
 A = randn(1, m);
 sub = nchoosek(1:m, %s);
 original = 0;
