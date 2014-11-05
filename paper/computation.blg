@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is BibTeX, Version 0.99d (TeX Live 2013/MacPorts 2013_5)
+=======
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+>>>>>>> ed53683a69f8d53bd38f72e2f615286f7711b347
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: computation.aux
 The style file: ieee.bst
@@ -6,7 +10,11 @@ Database file #1: bibliography.bib
 Warning--there's a number but no series in stanley2011enumerative
 You've used 30 entries,
             2120 wiz_defined-function locations,
+<<<<<<< HEAD
             665 strings with 8293 characters,
+=======
+            665 strings with 8239 characters,
+>>>>>>> ed53683a69f8d53bd38f72e2f615286f7711b347
 and the built_in function-call counts, 9334 in all, are:
 = -- 884
 > -- 465
