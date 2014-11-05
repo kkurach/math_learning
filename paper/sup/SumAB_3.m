@@ -4,6 +4,6 @@ A = randn(n, m);
 B = randn(m, n);
 original = sum(sum(((A * B) * A), 1), 2);
 
-optimized = 1 * (((B' * sum(A, 1)')' * sum(A', 1)'));
+optimized = 1 * (sum(((sum(A, 1) * B) * A), 2));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);

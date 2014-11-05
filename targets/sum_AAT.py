@@ -14,7 +14,7 @@ class SumAAT(Target):
     self.Compute()
 
   def Compute(self):
-    manage.config.N, manage.config.M = 5, 6
+    manage.config.N, manage.config.M = 4, 5
     manage.config.MAXPOWER = np.array([self.k])
     [A] = self.SetStartSymbols(1)
     aT = A.Transpose()

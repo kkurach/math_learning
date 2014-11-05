@@ -8,6 +8,6 @@ for i = 1:size(nset, 1)
   original = original + (v * A') ^ 7;
 end
 
-optimized = 2^(n - 8) * (42 * (sum(((sum(A, 2) * A)' * sum(((sum(A, 2) * A)' * sum((A' * (A * A')), 1)), 1)), 1)) + -420 * ((A * (A' * (((sum(A, 2) * A)' .* A')' * (A' .* A'))))) + -140 * (sum((A' * (((sum(A, 2) * A)' .* A')' * ((sum(A, 2) * A)' .* A'))), 1)) + 2 * ((sum(((sum(A, 2) * A)' * sum((A' * sum((sum(A, 2) * (sum(A, 2) * A))', 1)), 1)), 1) * sum(A, 2))) + 224 * ((A * ((((sum(A, 2) * A)' .* A')' .* (A' .* A')')' .* A'))) + 210 * (sum(((sum(A, 2) * A)' * sum((A' * (A * (A' * (A * A')))), 1)), 1)) + 210 * (sum((A' * (A * (A' * (A * (A' * (A * A')))))), 1)));
+optimized = 2^(n - 8) * (42 * ((((((A * (sum(A, 2) * A)') * sum(A, 2)) * sum(A, 2)) * sum(A, 2)) * sum(A, 2))) + -420 * (((((A .* A) * (A .* A)') * sum((A .* A), 2)) * sum(A, 2))) + -140 * ((((((A .* A) * (A .* A)') * sum(A, 2)) * sum(A, 2)) * sum(A, 2))) + 2 * (((((((sum(A, 2) * sum(A, 2)) * sum(A, 2)) * sum(A, 2)) * sum(A, 2)) * sum(A, 2)) * sum(A, 2))) + 210 * ((((A * (sum((A .* A), 2) * A)') * sum((A .* A), 2)) * sum(A, 2))) + 224 * ((((A' .* (A .* A)')' * (A' .* (A .* A)')) * sum(A, 2))) + 210 * (((((A * (sum((A .* A), 2) * A)') * sum(A, 2)) * sum(A, 2)) * sum(A, 2))));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);

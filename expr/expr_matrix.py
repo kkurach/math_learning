@@ -15,7 +15,6 @@ class ExprMatrix(object):
       self.comp = {NUMPY: comp, THEANO: comp, MATLAB: comp, THIS: comp, APPLIED_RULES: comp, READABLE_RULES: comp}
       if len(comp) == 1:
         self.comp[APPLIED_RULES] = None
-        self.comp[READABLE_RULES] = None
     else:
       self.comp = comp # It is a dictionary.
     assert expressions is not None
@@ -188,7 +187,7 @@ class ExprMatrix(object):
     expressions = self.expressions.transpose()
     comp = {NUMPY: '(%s.transpose())' % self.comp[NUMPY],
             THEANO: '(%s.T)'% self.comp[THEANO],
-            MATLAB: '(%s\')'% self.comp[MATLAB],
+            MATLAB: '%s\''% self.comp[MATLAB],
             THIS: '(%s).Transpose()'% self.comp[THIS],
             APPLIED_RULES: (2, self.comp[APPLIED_RULES]),
             READABLE_RULES: ('^T', self.comp[READABLE_RULES])}
@@ -207,7 +206,7 @@ class ExprMatrix(object):
           self.comp[NUMPY], axis),
         THEANO: '(T.sum(%s, axis=%s, keepdims=True))' % (
           self.comp[THEANO], axis),
-        MATLAB: '(sum(%s, %s))' % (self.comp[MATLAB], axis + 1),
+        MATLAB: 'sum(%s, %s)' % (self.comp[MATLAB], axis + 1),
         THIS: '(%s).Marginalize(%s)' % (self.comp[THIS], axis),
         APPLIED_RULES: (idx, self.comp[APPLIED_RULES]),
         READABLE_RULES: ('\sum_%d' % idx, self.comp[READABLE_RULES])}

@@ -12,6 +12,6 @@ for i = 1:size(nset, 1)
   end
 end
 
-optimized = 2^(n + m - 5) * (8 * (sum(sum(A, 1), 2)));
+optimized = 2^(n + m - 5) * (8 * (sum(sum(A', 1)', 1)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);

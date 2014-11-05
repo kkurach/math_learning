@@ -8,6 +8,6 @@ for i = 1:size(nset, 1)
   original = original + (v * A') ^ 5;
 end
 
-optimized = 2^(n - 6) * (2 * ((sum((A' * sum((sum(A, 2) * (sum(A, 2) * A))', 1)), 1) * sum(A, 2))) + 20 * (sum(((sum(A, 2) * A)' * sum((A' * (A * A')), 1)), 1)) + -20 * ((((sum(A, 2) * A)' .* A')' * (A' .* A'))) + 30 * (sum((A' * (A * (A' * (A * A')))), 1)));
+optimized = 2^(n - 6) * (2 * (((((sum(A, 2) * sum(A, 2)) * sum(A, 2)) * sum(A, 2)) * sum(A, 2))) + 20 * ((((A * (sum(A, 2) * A)') * sum(A, 2)) * sum(A, 2))) + -20 * ((((A .* A) * (A .* A)') * sum(A, 2))) + 30 * (((A * (sum((A .* A), 2) * A)') * sum(A, 2))));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);

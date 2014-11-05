@@ -3,7 +3,8 @@ from expr.expr_matrix import ExprMatrix
 from expr.expr_abstract import ExprAbstract
 from targets.target import Target
 import manage.config
-from manage.config import MATLAB
+from manage.config import MATLAB, THIS
+import math
 import itertools
 
 class Sym(Target):
@@ -18,7 +19,7 @@ class Sym(Target):
 
   def Compute(self):
     n = 1
-    m = max(self.power, 3) + 3
+    m = max(self.power, 3) + 7
     manage.config.N, manage.config.M = n, m
     impl = manage.config.EXPR_IMPL
     manage.config.MAXPOWER = np.array([self.power])
@@ -44,5 +45,7 @@ for i = 1:size(sub, 1)
   original = original + prod(A(sub(i, :)));
 end
 ''' % self.power
-    target = ExprMatrix(comp={MATLAB: matlab}, expressions=target, powers=manage.config.MAXPOWER)
+    target = ExprMatrix(comp={THIS: ""}, expressions=target, powers=manage.config.MAXPOWER)
+    target = target.ElementwiseMultiply(120)
+    target.comp[MATLAB] = matlab
     self.target_mat = target

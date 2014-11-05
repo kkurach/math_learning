@@ -7,6 +7,6 @@ for i = 1:size(sub, 1)
   original = original + prod(A(sub(i, :)));
 end
 
-optimized = (120 * (sum(A, 2))) / 120;
+optimized = (120 * (sum(A', 1))) / 120;
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);

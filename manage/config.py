@@ -12,7 +12,7 @@ M = 3
 MAXPOWER = np.array([1, 2, 3])
 EXPR_IMPL = None
 
-PRIME = long(90001)
+PRIME = long(9000223)
 PRIME2 = long(1009)
 NUM_HASH = 20
 

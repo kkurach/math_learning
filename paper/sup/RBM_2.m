@@ -12,6 +12,6 @@ for i = 1:size(nset, 1)
   end
 end
 
-optimized = 2^(n + m - 5) * (2 * (sum((A * sum(A', 2)), 1)) + 2 * (sum(sum((A .* A), 1), 2)) + 2 * ((sum(A, 2)' * sum(A, 2))) + 2 * ((sum(sum(A, 1), 2) * sum(sum(A, 1), 2))));
+optimized = 2^(n + m - 5) * (2 * (sum((sum(A, 1) .* sum(A, 1)), 2)) + 2 * (sum(sum((A .* A), 1), 2)) + 2 * (sum(sum((A .* repmat(sum(A, 2), 1, m)), 1)', 1)) + 2 * (sum((sum(A, 1) .* repmat(sum(sum(A, 1)', 1), 1, m)), 2)));
 normalization = sum(abs(original(:)));
 assert(sum(abs(original(:) - optimized(:))) / normalization < 1e-10);

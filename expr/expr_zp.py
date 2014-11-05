@@ -6,6 +6,7 @@ import expr.expr_abstract as expr_abstract
 import expr.expr_common as expr_common
 import copy
 from fractions import Fraction as F
+from fractions import gcd
 
 class ExprZp(expr_abstract.ExprAbstract):
   # expr vectors should be a list of vectors representing variables
@@ -127,14 +128,23 @@ class ExprZp(expr_abstract.ExprAbstract):
 
   @classmethod
   def ToFrac(cls, number):
-    frac_range = 100
+    frac_range = 2000
+    sol = None
+    score = 100000
     if abs(number) <= frac_range:
       return "%d" % number
     for i in range(-frac_range, frac_range):
       if i == 0:
         continue
-      if abs((number * i) % PRIME) <= frac_range:
-        return "(%d / %d)" % ((number * i) % PRIME, i)
+      a = (number * i) % PRIME
+      if abs(a) <= frac_range:
+        g = gcd(a, i)
+        new_score = abs(a / g) + abs(i / g)
+        if new_score < score:
+          sol = "%d / %d" % (a / g, i / g)
+          score = new_score
+    if sol is not None:
+     return sol
     raise Exception("Not a frac")
   
   @classmethod

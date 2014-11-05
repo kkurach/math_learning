@@ -24,6 +24,12 @@ Run ./main.py to compute some equivalent expressions for (\sum AA^T)k .
 Last lines of main.py define target.
 
 
+Computation Trees visualization
+===============================
+Call ./print_trees.py on any \*.tree file. This are files generated in 
+results/trees/
+
+
 Testing
 =======
 Run ./all_tests.py from tests directory to execute all tests.

@@ -16,7 +16,8 @@ from targets.sym import Sym
 from targets.target import Target
 from targets.rbm_oneside import RBMOneSide
 from expr.expr_zp import ExprZp
-from manage.config import MATLAB, APPLIED_RULES
+from manage.config import MATLAB, APPLIED_RULES, READABLE_RULES
+from print_trees import ProcessLine
 
 def handler(*_):
   print "Forever is over!"
@@ -28,19 +29,22 @@ def execute_once(scheduler, params, target, solution_tree, k):
   scheduler.SetTarget(t)
   scheduler.Train(solution_tree)
   matlab = None
+  tree = None
   try:
     signal.signal(signal.SIGALRM, handler)
     signal.alarm(30 * 60)
     scheduler.Run()
     solution_tree = [s[APPLIED_RULES] for s in scheduler.solution[1]]
     matlab = [(w, s[MATLAB]) for (w, s) in zip(scheduler.solution[0], scheduler.solution[1])]
+
+    tree = [s[READABLE_RULES] for s in scheduler.solution[1]]
   except OSError, exc:
     print "Exception", exc
-    return None, None
+    return None, None, None
   print "Executing schedule %s with params %s on the target %s" % \
     (str(scheduler), str(params), str(t))
   signal.alarm(0)
-  return matlab, solution_tree
+  return matlab, tree, solution_tree
 
 targets = [
            (SumAAT, "$\mathbf{(\sum AA^T)_k}$"),
@@ -50,11 +54,14 @@ targets = [
            (RBMOneSide, "{\\bf (RBM-1)$_k$}"),
            (RBM, "{\\bf (RBM-2)$_k$}")]
 
-def get_name(target, i):
+def get_name_matlab(target, i):
   return "sup/" + str(target.__name__) + "_" + str(i) + ".m"
 
+def get_name_tree(target, i):
+  return "trees/" + str(target.__name__) + "_" + str(i) + "_"
+
 def generate_sup():
-  os.remove('sup.tex')
+  os.system("rm -rf sup.tex")
   sup = open('sup.tex', 'w')
   for target, labels in targets:
     print("writing " + labels)
@@ -62,10 +69,22 @@ def generate_sup():
     for i in range(1, 16):
       manage.config.N = 2 
       manage.config.M = 3
-      name = get_name(target, i)
+      name = get_name_matlab(target, i)
       if os.path.isfile(name):
         sup.write("\n\n{\\bf k = %d}\n\n" % i)
         sup.write("\script{%s}\n\n" % name )
+        tree = get_name_tree(target, i)
+        inp = ""
+        for i in range(100):
+          name = tree + "horizontal_" + str(i) + ".png"
+          if os.path.isfile(name):
+            inp += "\includegraphics[width=0.45\linewidth]{%s}\n" % name
+        if len(inp) > 0:
+          sup.write("\\begin{center}\n")
+          sup.write(inp)
+          sup.write("\\end{center}\n")
+
+
         sup.flush()
   sup.close()
 
@@ -75,10 +94,10 @@ def main():
     scheduler = NgramScheduler(params)
     solution_tree = None
     for i in range(1, 16):
-      matlab, solution_tree = execute_once(scheduler, params, target, solution_tree, i)
+      matlab, tree, solution_tree = execute_once(scheduler, params, target, solution_tree, i)
       if matlab is None:
         break
-      name = get_name(target, i)
+      name = get_name_matlab(target, i)
       original = target(i).GetTargetExpression()
       code = ""
       code += original.comp[MATLAB] + "\n"
@@ -108,6 +127,10 @@ def main():
       if ret != 0:
         break
       os.rename("code.m", name)
+      tree_string = ""
+      for j, t in enumerate(tree):
+        ProcessLine(j, str(t), get_name_tree(target, i))
+
       generate_sup()
 
 if __name__ == '__main__':
