@@ -89,7 +89,7 @@ def generate_sup():
   sup.close()
 
 def main():
-  for target, labels in targets:
+  for target, labels in [targets[2]]:
     params = {'depth': 5, 'trials': 1, 'run_id': 1}
     scheduler = NgramScheduler(params)
     solution_tree = None

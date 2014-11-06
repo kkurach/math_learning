@@ -1,0 +1,95 @@
+\documentclass{article} % For LaTeX2e
+\usepackage{nips14submit_e,times}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{multirow}
+%\documentstyle[nips14submit_09,times,art10]{article} % For LaTeX 2.09
+
+\usepackage{framed}
+\usepackage{algorithmic}
+\usepackage{graphicx} 
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{listings}
+
+\lstloadlanguages{Matlab}
+
+\lstset{
+  language=Matlab,
+  frame=single,
+  breaklines=true,
+  basicstyle=\tiny,
+  postbreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\color{red}\hookrightarrow\space}}
+}
+
+\newcommand{\script}[2]{
+\lstinputlisting{#1}
+}
+
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{0.5ex}{0.3ex}
+\titlespacing{\subsection}{0pt}{0.2ex}{0ex}
+\titlespacing{\subsubsection}{0pt}{0.1ex}{0ex}
+
+\newcommand{\startcompact}[1]{\par\vspace{-0.75em}\begin{#1}%
+  \allowdisplaybreaks\ignorespaces}
+
+\newcommand{\stopcompact}[1]{\end{#1}\ignorespaces}
+
+\usepackage{paralist}
+
+\makeatletter
+\ifcase \@ptsize \relax% 10pt
+  \newcommand{\miniscule}{\@setfontsize\miniscule{4}{5}}% \tiny: 5/6
+\or% 11pt
+  \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}% \tiny: 6/7
+\or% 12pt
+  \newcommand{\miniscule}{\@setfontsize\miniscule{5}{6}}% \tiny: 6/7
+\fi
+\makeatother
+
+\newcommand {\aplt} {\ {\raise-.5ex\hbox{$\buildrel<\over\sim$}}\ }
+
+\newcommand{\eqn}[1]{Eqn.~\ref{eqn:#1}}
+\newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\tab}[1]{Table~\ref{tab:#1}}
+\newcommand{\secc}[1]{Section~\ref{sec:#1}}
+\def\etal{{\textit{et~al.~}}}
+\newcommand{\BigO}[1]{\ensuremath{\operatorname{O}\left(#1\right)}}
+\usepackage[symbol*]{footmisc}
+
+\DefineFNsymbolsTM{myfnsymbols}{% def. from footmisc.sty "bringhurst" symbols
+  \textasteriskcentered *
+  \textdagger    \dagger
+  \textdaggerdbl \ddagger
+  \textsection   \mathsection
+  \textbardbl    \|%
+  \textparagraph \mathparagraph
+}%
+
+\nipsfinalcopy % Uncomment for camera-ready version
+
+\begin{document}
+
+\setcounter{section}{8}
+
+\pagebreak
+\section{Supplementary material}
+We present the efficient expressions discovered by our system, using
+Matlab-style syntax, and we visualize computation trees. Each example contains: (i) code that computes the
+original target formulas; (ii) the formulae derived by our system and
+(iii) code that verifies the correctness of the expression. The size of
+matrices $n$, $m$ can be chosen arbitrary.
+
+Code for generating the expressions can be downloaded from \url{https://github.com/kkurach/math_learning}.
+The source files for this paper are available at \url{https://github.com/kkurach/math_learning/paper/}.
+
+
+\input{sup}
+
+\end{document}
+
+

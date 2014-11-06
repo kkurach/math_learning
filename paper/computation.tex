@@ -14,6 +14,8 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{listings}
+\usepackage{pdfpages}
+
 
 \lstloadlanguages{Matlab}
 
@@ -896,17 +898,7 @@ The authors would like to thank Facebook and Microsoft Research for their suppor
 \bibliography{bibliography}
 \bibliographystyle{ieee}
 
-\pagebreak
-\section{Supplementary material}
-We present the efficient expressions discovered by our system, using
-Matlab-style syntax, and we visualize computation trees. Each example contains: (i) code that computes the
-original target formulas; (ii) the formulae derived by our system and
-(iii) code that verifies the correctness of the expression. The size of
-matrices $n$, $m$ can be chosen arbitrary.
-
-Code for generating the expressions can be downloaded from \url{https://github.com/kkurach/math_learning}.
-The source files for this paper are available at \url{https://github.com/kkurach/math_learning/paper/}.
-
-\input{sup}
+%\include{sup}
+\includepdf[pages=1-last]{ssup.pdf}
 
 \end{document}
