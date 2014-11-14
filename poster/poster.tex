@@ -311,12 +311,12 @@ Recall goal: find equivalent expressions to target
 i.e. descriptors match
 Restrict grammar to use operators with lower complexity than target
 If any match found then sure to be efficient w.r.t. target
-
+\vspace{-0.8cm}
 \begin{center}
 {\bf Want to learn a good \textcolor{red}{prior} over expressions}
 \end{center}
 
-
+\vspace{-0.2cm}
 \textcolor{anublue}{Scheduler} picks potential new operators to append to current expression(s).
 
 Example:
@@ -362,15 +362,16 @@ Sample new operator according to scorer probabilities
 
 Use curriculum learning approach.
 Start with easy targets, and uniform prior (low polynomial degree $k$). 
-Refine prior using new solution 
-
+Refine prior using new solution.
+\vspace{0.5cm}
+\\
 \begin{minipage}[hc]{\textwidth}
   \begin{center}
     \begin{tabular}{lll}
       \hline
         & Target Expression & Efficient expression \\
       \hline
-      K = 1 \hspace{1cm} & $\sum_i a_i $ & sum(sum(A, 1), 2) \\
+      K = 1 \hspace{1cm} & $\sum_i a_i \hspace{1cm} $ & sum(sum(A, 1), 2) \\
       \hline
       K = 2 & $\sum_{i,j} a_ia_j $ & 0.5 * (sum((repmat(sum(A', 1), 1, m) .* A), 2)) + \\
             & & -0.5 * (sum((A .* A)', 1))) \\
@@ -390,11 +391,10 @@ Refine prior using new solution
 \PosterBox{$n$-gram}
 \begin{minipage}[hc]{\textwidth}
   \centering
-  \includegraphics[width=0.47\linewidth]{imgs/bigram.png}
+  \includegraphics[width=0.40\linewidth]{imgs/bigram.png}
   \hfill
-  \includegraphics[width=0.47\linewidth]{imgs/histogram.png}
+  \includegraphics[width=0.40\linewidth]{imgs/histogram.png}
 \end{minipage}
-
 
 \PosterBox{Experiments in discovering identities}
 $5$ families of expressions (vary degree $k$)
@@ -420,7 +420,6 @@ Repeat $10$ times, measure fraction successful
 {\bf RBM-2}\\
 No scorer strategy able to get beyond $k=5$ 
 However, the $k = 5$ solution was found by the RNN consistently faster than the random strategy (100 +- 12 vs 438 +- 77 secs). 
-
 \PosterBox{Recurrsive neural network strategy}
 $n$-gram has a shallow understanding of mathematical expressions (up to depth $n$).
 We trained recurrsive neural network to identify equivalent expressions.
@@ -429,11 +428,29 @@ We trained recurrsive neural network to identify equivalent expressions.
   \hfill
   \includegraphics[width=0.45\linewidth]{imgs/tnn2.png}
 \end{minipage}
+
+\begin{itemize}
+  \item Training data: for each degree find groups of equivalent expressions (exhaustive search).
+  \item Label each group as a different class.
+  \item Add softmax classifier to RNN and train with cross-entropy loss.
+\end{itemize}
+
+Training examples for degree k=6:\\
+\includegraphics[width=0.98\linewidth]{imgs/classes.png}
 \includegraphics[width=0.98\linewidth]{imgs/print_trees.png}
+\vspace{-0.5cm}
 \begin{center}
 Note: no explicit knowledge of math operators
 \end{center}
-
+\vspace{-0.5cm}
+\PosterBox{Related work}
+\vspace{-0.8cm}
+\begin{itemize}
+  \item Recent efforts to combine ML with theorem provers, e.g. Bridge et al. 2014
+  \item Distilling Free-Form Natural Laws from Experimental Data, Michael Schmidt and Hod Lipson.  Science, Vol. 324, April 3, 2009.
+  \item Recursive neural nets in NLP Socher et al. 2013, Luong et al., learning logics Bowman et al. 2014 for logical predicates
+  \item Learning to Execute, Wojciech Zaremba \& Ilya Sutskever, arXiv 1410.4615, 2014
+\end{itemize}
 \end{PosterColumn}
 
 %%%
