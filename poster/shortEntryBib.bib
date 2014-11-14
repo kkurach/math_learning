@@ -1,0 +1,532 @@
+@STRING{aaai    = {Proc.\ National Conf.\ Artificial Intelligence} }
+@STRING{ai  = {Artificial Intelligence} }
+@STRING{aistats = {Proc.\ Intl.\ Workshop on Artificial
+          Intelligence and Statistics} }
+@STRING{alt = {Proc.\ Intl.\ Conf.\ Algorithmic Learning Theory} }
+@STRING{alt-ws = {Proc.\ Intl.\ Workshop on Algorithmic Learning Theory} }
+@STRING{amas    = {Annals of Mathematical Statistics} }
+@STRING{ap  = {Annals of Probability} }
+@STRING{as  = {Annals of Statistics} }
+@STRING{bi  = {Bioinformatics} }
+@STRING{biocyb  = {Biological Cybernetics} }
+@STRING{bioinf  = {Bioinformatics} }
+@STRING{cacm    = {Communications of the ACM} }
+@STRING{cgip    = {Computer Graphics and Image Processing} }
+@STRING{chap    = {Chapman and . all} }
+@STRING{colt    = {Proc.\ Annual Conf.\ Computational Learning Theory} }
+@STRING{computer= {IEEE Computer} }
+@STRING{cvgip   = {Computer Vision, Graphics, and Image Processing} }
+@STRING{cvpr    = {Proc.\ IEEE Conf.\ Computer Vision and Pattern Recognition} }
+@STRING{ecml    = {Proc.\ European Conf.\ Machine Learning} }
+@STRING{else    = {Elsevier Science Publishers} }
+@STRING{eurocolt= {Proc.\ European Conf.\ Computational Learning Theory} }
+@STRING{febs    = {FEBS Letter} }
+@STRING{focs    = {Proc.\ Symposium on Foundations of Computer Science,} }
+@STRING{gcb99   = {Proc.\ German Conference on Bioinformatics '99} }
+@STRING{graw    = {McGraw-Hill} }
+@STRING{icann   = {Proc.\ Intl.\ Conf.\ Artificial Neural Networks} }
+@STRING{iccv    = {Proc.\ Intl.\ Conf.\ Computer Vision} }
+@STRING{icdm    = {Proc.\ Intl.\ Conf.\ Data Mining} }
+@STRING{icml    = {Proc.\ Intl.\ Conf.\ Machine Learning} }
+@STRING{icpp    = {Proc.\ Intl.\ Conf.\ Parallel Processing} }
+@STRING{icpr    = {Proc.\ Intl.\ Conf.\ Pattern Recognition} }
+@STRING{ieee    = {Proceedings of the IEEE} }
+@STRING{ieeeit  = {IEEE Trans.\ Information Theory} }
+@STRING{ieeenn  = {IEEE Trans.\ Neural Networks} }
+@STRING{ieeesignal={IEEE Trans.\ Signal Processing} }
+@STRING{ijcai   = {Proc.\ Intl.\ Joint Conf.\ on Artificial Intelligence} }
+@STRING{ijcnn   = {Proc.\ Intl.\ Joint Conf.\ on Neural Networks} }
+@STRING{ijcv    = {Intl.\ Journal of Computer Vision} }
+@STRING{iu  = {Proc.\ Image Understanding Workshop} }
+@STRING{jacm    = {Journal of the ACM} }
+@STRING{jair    = {Journal of Artificial Intelligence Research} }
+@STRING{jalc    = {Journal of Automata, Languages and Combinatorics} }
+@STRING{jasa    = {Journal of the American Statistical Association} }
+@STRING{jat = {Journal of Approximation theory} }
+@STRING{jcb = {Journal of Computational Biology} }
+@STRING{jda = {Journal of Discrete Algorithms} }
+@STRING{jmb = {Journal of Molecular Biology} }
+@STRING{jmlr    = {J. Mach. Learn. Res.} }
+@STRING{josa    = {Journal of the Optical Society of America} }
+@STRING{jrr = {International Journal of Robotics Research} }
+@STRING{kdd = {Conference on Knowledge Discovery and Data Mining} }
+@STRING{kluwer  = {Kluwer Academic} }
+@STRING{lnai    = {Lecture Notes in Artificial Intelligence} }
+@STRING{lncs    = {Lecture Notes in Computer Science} }
+@STRING{mathcomp= {Math. of Computation} }
+@STRING{mit = {Massachusetts Institute of Technology} }
+@STRING{mitai   = {Artificial Intelligence Laboratory, Massachusetts
+          Institute of Technology} }
+@STRING{mitpr   = {{MIT} Press} }
+@STRING{ml  = {Machine Learning} }
+@STRING{morgan  = {Morgan Kaufmann Publishers} }
+@STRING{nc  = {Neural Computation} }
+@String{nn  = {Neural Networks}}
+@STRING{nips    = {Neural Information Processing Systems} }
+@STRING{nips1   = {Advances in Neural Information Processing Systems 1} }
+@STRING{nips10  = {Advances in Neural Information Processing Systems 10} }
+@STRING{nips10e = {M.~I. Jordan and M.~J. Kearns and S.~A. Solla} }
+@STRING{nips11  = {Advances in Neural Information Processing Systems 11} }
+@STRING{nips11e = {M.~S. Kearns and S.~A. Solla and D.~A. Cohn} }
+@STRING{nips12  = {Advances in Neural Information Processing Systems 12} }
+@STRING{nips12e = {S.~A. Solla and T.~K. Leen and K.-R. M\"uller} }
+@STRING{nips13  = {Advances in Neural Information Processing Systems 13} }
+@STRING{nips13e = {T.~K. Leen and T.~G. Dietterich and V. Tresp} }
+@STRING{nips14  = {Advances in Neural Information Processing Systems 14} }
+@STRING{nips14e = {T.~G. Dietterich and S. Becker and Z. Ghahramani} }
+@STRING{nips15  = {Advances in Neural Information Processing Systems 15} }
+@STRING{nips15e = {S. Becker and S. Thrun and K. Obermayer} }
+@STRING{nips16  = {Advances in Neural Information Processing Systems 16} }
+@STRING{nips16e = {S. Thrun and L. Saul and B. Sch\"olkopf} }
+@STRING{nips17  = {Advances in Neural Information Processing Systems 17} }
+@STRING{nips17e = {L. K. Saul and Y. Weiss and L. Bottou} }
+@STRING{nips18  = {Advances in Neural Information Processing Systems 18} }
+@STRING{nips18e = {Y. Weiss and B. Sch\"olkopf and J. Platt} }
+@STRING{nips19  = {Advances in Neural Information Processing Systems 19} }
+@STRING{nips19e = {B. Sch\"olkopf and J. Platt and T. Hofmann} }
+@STRING{nips1e  = {D.~S. Touretzky} }
+@STRING{nips2   = {Advances in Neural Information Processing Systems 2} }
+@STRING{nips20  = {Advances in Neural Information Processing Systems 20} }
+@STRING{nips20e = {J.~C. Platt and D. Koller and Y. Singer and S. Roweis} }
+@STRING{nips21  = {Advances in Neural Information Processing Systems 21} }
+@STRING{nips21e = {D. Koller and Y. Bengio and D. Schuurmans and S. Roweis} }
+@STRING{nips20e_not = {D. Koller and D. Schuurmans and Y. Bengio and L. Bottou} }
+@STRING{nips2e  = {D.~S. Touretzky} }
+@STRING{nips3   = {Advances in Neural Information Processing Systems 3} }
+@STRING{nips3e  = {R. Lippmann and J.~E. Moody and D.~S. Touretzky} }
+@STRING{nips4   = {Advances in Neural Information Processing Systems 4} }
+@STRING{nips4e  = {J.~E. Moody and S.~J. Hanson and R. Lippmann} }
+@STRING{nips5   = {Advances in Neural Information Processing Systems 5} }
+@STRING{nips5e  = {S.~J. Hanson and J.~D. Cowan and C.~L. Giles} }
+@STRING{nips6   = {Advances in Neural Information Processing Systems 6} }
+@STRING{nips6e  = {J.~D. Cowan and G. Tesauro and J. Alspector} }
+@STRING{nips7   = {Advances in Neural Information Processing Systems 7} }
+@STRING{nips7e  = {G. Tesauro and D.~S. Touretzky and T.~K. Leen} }
+@STRING{nips8   = {Advances in Neural Information Processing Systems 8} }
+@STRING{nips8e  = {D.~S. Touretzky and M.~C. Mozer and M.~E. Hasselmo} }
+@STRING{nips9   = {Advances in Neural Information Processing Systems 9} }
+@STRING{nips9e  = {M.~C. Mozer and M.~I. Jordan and T. Petsche} }
+@STRING{ny  = {New York} }
+@STRING{opteng  = {Optical Engineering} }
+@STRING{pami    = {IEEE Transactions on Pattern Analysis and Machine
+          Intelligence} }
+@STRING{patt    = {Proc.\ Intl.\ Conf.\ Pattern Recognition} }
+@STRING{pnas    = {Proc.\ Natl.\ Acad.\ Sci.\ USA} }
+@STRING{pr  = {Pattern Recognition} }
+@STRING{prip    = {Proceedings of IEEE Computer Society Conference on Pattern
+          Recognition and Image Processing} }
+@STRING{prsl    = {Proceedings of the Royal Society of London} }
+@STRING{prslb   = {Proceedings of the Royal Society of London B} }
+@STRING{robau   = {Proceedings of IEEE Conference on Robotics and
+          Automation} }
+@STRING{sciam   = {Scientific American} }
+@STRING{siam    = {SIAM J. Comp.} }
+@STRING{sigir   = {ACM Special Interest Group in Information Retrieval
+          (SIGIR)} }
+@STRING{sml = {Statistical Machine Learning Program} }
+@STRING{spring  = {Springer} }
+@STRING{stoc    = {Proceedings ACM Symposium on Theory of Computing} }
+@STRING{tams    = {Transactions of the American Mathematical Society} }
+@STRING{theoprob= {Theory of Probability and its Applications} }
+@STRING{tmc = {Thinking Machines Corporation} }
+@STRING{uai = {Conference on Uncertainty in Artificial Intelligence} }
+@STRING{visres  = {Vision Research} }
+@STRING{weizman = {Weizman Institute of Science} }
+@STRING{wiley   = {John Wiley and Sons} }
+
+
+
+@article{zaremba2014learning,
+  title={Learning to Execute},
+  author={Zaremba, Wojciech and Sutskever, Ilya},
+  journal={arXiv preprint arXiv:1410.4615},
+  year={2014}
+}
+
+@book{char1991maple,
+  title={Maple V library reference manual},
+  author={Char, Bruce W and Geddes, Keith O and Gonnet, Gaston H and Leong, Benton L and Monagan, Michael B and Watt, Stephen M},
+  volume={199},
+  year={1991},
+  publisher={Springer-verlag New York}
+}
+
+@book{wolfram1996mathematica,
+  title={The mathematica book},
+  author={Wolfram, Stephen},
+  volume={221},
+  year={1996},
+  publisher={Wolfram Media Champaign, Illinois}
+}
+
+@inproceedings{cook1971complexity,
+  title={The complexity of theorem-proving procedures},
+  author={Cook, Stephen A},
+  booktitle={Proceedings of the third annual ACM symposium on Theory of computing},
+  pages={151--158},
+  year={1971},
+  organization={ACM}
+}
+
+@book{chang1973symbolic,
+  title={Symbolic logic and mechanical theorem proving},
+  author={Chang, Chin-Liang},
+publisher={Academic Press},  
+year={1973}
+}
+
+@book{fitting1996first,
+  title={First-order logic and automated theorem proving},
+  author={Fitting, Melvin},
+  year={1996},
+  publisher={Springer}
+}
+
+@book{nordin1997evolutionary,
+  title={Evolutionary program induction of binary machine code and its applications},
+  author={Nordin, Peter},
+  year={1997},
+  publisher={Krehl Munster}
+}
+
+@article{wong1997evolutionary,
+  title={Evolutionary program induction directed by logic grammars},
+  author={Wong, Man Leung and Leung, Kwong Sak},
+  journal={Evolutionary Computation},
+  volume={5},
+  number={2},
+  pages={143--180},
+  year={1997},
+  publisher={MIT Press}
+}
+
+@incollection{pfeffer2011practical,
+  title={Practical probabilistic programming},
+  author={Pfeffer, Avi},
+  booktitle={Inductive Logic Programming},
+  pages={2--3},
+  year={2011},
+  publisher={Springer}
+}
+
+@article{mikolov2013efficient,
+  title={Efficient estimation of word representations in vector space},
+  author={Mikolov, Tomas and Chen, Kai and Corrado, Greg and Dean, Jeffrey},
+  journal={arXiv:1301.3781},
+  year={2013}
+}
+
+
+@article{goodman2012church,
+  title={Church: a language for generative models},
+  author={Goodman, Noah and Mansinghka, Vikash and Roy, Daniel and Bonawitz, Keith and Tarlow, Daniel},
+  journal={arXiv:1206.3255},
+  year={2012}
+}
+
+@article{saxe2013exact,
+ title={Exact solutions to the nonlinear dynamics of learning in deep linear neural networks},
+ author={Saxe, Andrew M and McClelland, James L and Ganguli, Surya},
+ journal={arXiv:1312.6120},
+ year={2013}
+}
+
+@article{bottou2014machine,
+  title={From machine learning to machine reasoning},
+  author={Bottou, L{\'e}on},
+  journal={Machine Learning},
+  volume={94},
+  number={2},
+  pages={133--149},
+  year={2014},
+  publisher={Springer}
+}
+
+@article{socher2010learning,
+ title={Learning continuous phrase representations and syntactic parsing with recursive neural networks},
+ author={Socher, Richard and Manning, Christopher D and Ng, Andrew Y},
+ journal={Proceedings of the NIPS-2010 Deep Learning and Unsupervised Feature Learning Workshop},
+ pages={1--9},
+ year={2010}
+}
+
+@inproceedings{socher2013recursive,
+ title={Recursive Deep Models for Semantic Compositionality Over a Sentiment Treebank},
+ author={Socher, Richard and Perelygin, Alex and Wu, Jean Y and Chuang, Jason and Manning, Christopher D and Ng, Andrew Y and Potts, Christopher Potts},
+ booktitle={EMNLP},
+ year={2013}
+}
+
+@inproceedings{luong2013better,
+        Author = {Luong, Minh-Thang  and  Socher, Richard and Manning, Christopher D.},
+        Booktitle = {CoNLL},
+        Title = {Better Word Representations with Recursive Neural Networks for Morphology},
+        Year = {2013}}
+
+
+@article{baldi2014dropout,
+  title={The dropout learning algorithm},
+  author={Baldi, Pierre and Sadowski, Peter},
+  journal={Artificial Intelligence},
+  year={2014},
+  publisher={Elsevier}
+}
+
+@book{chen2013learning,
+  title={Learning with single view co-training and marginalized dropout},
+  author={Chen, Minmin and Adviser-Weinberger, Kilian Quirin},
+  year={2013},
+  publisher={Washington University}
+}
+
+@inproceedings{Collobert08,
+author = "Ronan Collobert and Jason Weston",
+title = "A unified architecture for natural language processing: deep neural networks with multitask learning",
+booktitle = "ICML",
+year = "2008"
+}
+
+@article{chen2012marginalized,
+  title={Marginalized denoising autoencoders for domain adaptation},
+  author={Chen, Minmin and Xu, Zhixiang and Weinberger, Kilian and Sha, Fei},
+  journal={arXiv preprint arXiv:1206.4683},
+  year={2012}
+}
+
+@article{Bridge14,
+journal = "Journal of Automated Reasoning",
+month = "August",
+year = "2014",
+volume = "53",
+issue = "2",
+pages = "141--172",
+title = "Machine Learning for First-Order Theorem Proving",
+author = "Bridge, J. P. and Holden, S. B. and Paulson, L. C."
+}
+
+@inproceedings{Bengio09,
+title = "Curriculum learning",
+author = "Bengio, Y. and Louradour, J. and Collobert, R. and Weston, J.",
+booktitle = "ICML",
+year = "2009"
+}
+
+@inproceedings{maaten2013learning,
+  title={Learning with marginalized corrupted features},
+  author={Maaten, Laurens and Chen, Minmin and Tyree, Stephen and Weinberger, Kilian Q},
+  booktitle={Proceedings of the 30th International Conference on Machine Learning (ICML-13)},
+  pages={410--418},
+  year={2013}
+}
+
+@article{hinton2012improving,
+  title={Improving neural networks by preventing co-adaptation of feature detectors},
+  author={Hinton, Geoffrey E and Srivastava, Nitish and Krizhevsky, Alex and Sutskever, Ilya and Salakhutdinov, Ruslan R},
+  journal={arXiv:1207.0580},
+  year={2012}
+}
+
+@article{arxiv,
+  title={Learning to Discover Efficient Mathematical Identities},
+  author={Zaremba, W. and Kurach, K. and Fergus, R.},
+  journal={arXiv:1406.1584},
+  year={2014}
+}
+
+@article{bowman2013can,
+  title={Can recursive neural tensor networks learn logical reasoning?},
+  author={Bowman, Samuel R},
+  journal={arXiv preprint arXiv:1312.6192},
+  year={2013}
+}
+
+@book{stanley2011enumerative,
+  title={Enumerative combinatorics},
+  author={Stanley, Richard P},
+  number={49},
+  year={2011},
+  publisher={Cambridge university press}
+}
+
+
+@inproceedings{Mnih09,
+author = "Andriy Mnih and Geoffrey E Hinton",
+title = "A scalable hierarchical distributed language model",
+booktitle = "NIPS",
+year = "2009"
+}
+
+@inproceedings{Turian10,
+author = "Joseph Turian and Lev Ratinov and Yoshua Bengio",
+title = "Word representations: a simple and general method for semi-supervised learning",
+booktitle = "ACL",
+year = "2010"
+}
+
+@article{hinton2002training,
+  title={Training products of experts by minimizing contrastive divergence},
+  author={Hinton, Geoffrey E},
+  journal={Neural computation},
+  volume={14},
+  number={8},
+  pages={1771--1800},
+  year={2002},
+  publisher={MIT Press}
+}
+
+@inproceedings{tieleman2008training,
+  title={Training restricted Boltzmann machines using approximations to the likelihood gradient},
+  author={Tieleman, Tijmen},
+  booktitle={Proceedings of the 25th international conference on Machine learning},
+  pages={1064--1071},
+  year={2008},
+  organization={ACM}
+}
+
+
+@article{Hinton12,
+author = "Hinton, G.E. and Srivastave, N. and Krizhevsky, A. and Sutskever, I. and Salakhutdinov, R. R.",
+title = "Improving neural networks by preventing co-adaptation of feature detectors",
+journal = "",
+volume = "arXiv:1207.0580",
+pages ="",
+year = "2012"
+}
+
+
+@inproceedings{long2010restricted,
+  title={Restricted boltzmann machines are hard to approximately evaluate or simulate},
+  author={Long, Philip M and Servedio, Rocco},
+  booktitle={Proceedings of the 27th International Conference on Machine Learning (ICML-10)},
+  pages={703--710},
+  year={2010}
+}
+
+@article{alon2006approximating,
+  title={Approximating the cut-norm via Grothendieck's inequality},
+  author={Alon, Noga and Naor, Assaf},
+  journal={SIAM Journal on Computing},
+  volume={35},
+  number={4},
+  pages={787--803},
+  year={2006},
+  publisher={SIAM}
+}
+
+@inproceedings{salakhutdinov2010learning,
+  title={Learning deep Boltzmann machines using adaptive MCMC},
+  author={Salakhutdinov, Ruslan},
+  booktitle={Proceedings of the 27th International Conference on Machine Learning (ICML-10)},
+  pages={943--950},
+  year={2010}
+}
+
+# RELATED WORK
+@article{desainte1994using,
+  title={Using attribute grammars to find solutions for musical equational programs},
+  author={Desainte-Catherine, Myriam and Barbar, Kablan},
+  journal={ACM SIGPLAN Notices},
+  volume={29},
+  number={9},
+  pages={56--63},
+  year={1994},
+  publisher={ACM}
+}
+
+@inproceedings{cheung1999attribute,
+  title={An attribute grammar based framework for machine-dependent computational optimization of media processing algorithms},
+  author={Cheung, Gene and McCanne, Steven},
+  booktitle={ICIP},
+  volume={2},
+  pages={797--801},
+  year={1999},
+  organization={IEEE}
+}
+
+@incollection{starkie2002inferring,
+  title={Inferring attribute grammars with structured data for natural language processing},
+  author={Starkie, Bradford},
+  booktitle={Grammatical Inference: Algorithms and Applications},
+  pages={237--248},
+  year={2002},
+  publisher={Springer}
+}
+
+@article{thirunarayan2009attribute,
+  title={Attribute Grammars and their Applications},
+  author={Thirunarayan, Krishnaprasad},
+  journal={Encyclopedia of Information Science and Technology},
+  pages={268--273},
+  year={2009}
+}
+@article{knuth1968semantics,
+  title={Semantics of context-free languages},
+  author={Knuth, Donald E},
+  journal={Mathematical systems theory},
+  volume={2},
+  number={2},
+  pages={127--145},
+  year={1968},
+  publisher={Springer}
+}
+@article{koch2007attribute,
+  title={Attribute grammars for scalable query processing on XML streams},
+  author={Koch, Christoph and Scherzinger, Stefanie},
+  journal={The VLDB journal},
+  volume={16},
+  number={3},
+  pages={317--342},
+  year={2007},
+  publisher={Springer}
+}
+@inproceedings{ramakrishnan1991top,
+  title={Top-down vs. bottom-up revisited},
+  author={Ramakrishnan, Raghu and Sudarshan, S},
+  booktitle={Proceedings of the International Logic Programming Symposium},
+  pages={321--336},
+  year={1991}
+}
+@book{bratko2001prolog,
+  title={Prolog: programming for artificial intelligence},
+  chapter={21},
+  author={Bratko, Ivan},
+  year={2001},
+  publisher={Pearson education}
+}
+@incollection{hafiz2011modular,
+  title={Modular natural language processing using declarative attribute grammars},
+  author={Hafiz, Rahmatullah and Frost, Richard A},
+  booktitle={Advances in Artificial Intelligence},
+  pages={291--304},
+  year={2011},
+  publisher={Springer}
+}
+@article{bellanova1984examples,
+  title={Examples of algorithms specification by means of attribute grammars},
+  author={Bellanova, A},
+  journal={Calcolo},
+  volume={21},
+  number={1},
+  pages={15--32},
+  year={1984},
+  publisher={Springer}
+}
+@inproceedings{o2004solving,
+  title={Solving knapsack problems with attribute grammars},
+  author={O’Neill, Michael and Cleary, Robert and Nikolov, Nikola},
+  booktitle={Proceedings of the Third Grammatical Evolution Workshop (GEWS’04)},
+  year={2004},
+  organization={Citeseer}
+}
+@article{waldispuhl2002approximate,
+  title={An approximate matching algorithm for finding (sub-) optimal sequences in S-attributed grammars},
+  author={Waldisp{\"u}hl, J{\'e}r{\^o}me and Behzadi, Behshad and Steyaert, J-M},
+  journal={Bioinformatics},
+  volume={18},
+  number={suppl 2},
+  pages={S250--S259},
+  year={2002},
+  publisher={Oxford Univ Press}
+}
+
+
