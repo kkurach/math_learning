@@ -23,6 +23,7 @@
 \usepackage{amssymb,amsmath}
 \usepackage{multirow}
 \usepackage{booktabs} 
+\usepackage{mdframed}
 
 % size of the columns of the poster, relative to the width of the
 % whole poster: 
@@ -46,7 +47,10 @@
   belowskip=10pt,
   breaklines=true
 }
+\usepackage{array}
 
+\newcolumntype{C}{ >{\centering\arraybackslash} m{5.5cm} }
+\newcolumntype{D}{ >{\centering\arraybackslash} m{4.5cm} }
 
 
 \begin{document}
@@ -110,6 +114,7 @@ $^1$Courant Institute NYU; $^2$University of Warsaw; $^3$Google; $^4$Facebook}
 \newcommand{\Anublue}[1]{\color{anublue}{#1}\color{black}}
 \newcommand{\Blue}[1]{\color{blue}{#1}\color{black}}
 \newcommand{\Engpink}[1]{\color{engPink}{#1}\color{black}}
+\newcommand{\myrule}{\vrule width 3pt}
 
 
 
@@ -147,7 +152,7 @@ $^1$Courant Institute NYU; $^2$University of Warsaw; $^3$Google; $^4$Facebook}
 
 \begin{PosterColumn} 
   
-\PosterBox{The Combinatorial Explosion \\ Discrete search is a central issue in AI}
+\PosterBox{The Combinatorial Explosion: \\ Discrete search is a central issue in AI}
 
 \vspace{-2cm}
 \begin{center}
@@ -173,7 +178,7 @@ $^1$Courant Institute NYU; $^2$University of Warsaw; $^3$Google; $^4$Facebook}
 \begin{minipage}[hc]{0.45\textwidth}
   {\bf Contemporary theorem provers}
   \begin{itemize}
-    \item Requires search over all possible combinations of operators
+    \item Requires search over {\bf all possible combinations} of operators
     \item Intractable for all but simple proofs
     \item Automated Theorem Provers use heuristics
   \end{itemize}
@@ -193,18 +198,24 @@ We focus on simpler problem: discovering identities in mathematics.
 
 \PosterBox{Toy Example}
 
-\begin{minipage}[hc]{0.45\textwidth}
+\begin{minipage}[hc]{0.32\textwidth}
   \centering
-  Consider two matrices $A$ and $B$:
+  Consider matrices $A$ and $B$:
   \begin{align*}
     \sum_{i, k}(AB)_{i, k} = \sum_i \sum_j \sum_k a_{i,j} b_{j, k}
   \end{align*}
 \end{minipage}
 \hfill
-\begin{minipage}[hc]{0.45\textwidth}
+\begin{minipage}[hc]{0.32\textwidth}
   \centering
   Naive computation takes $\BigO{n^3}$: 
-  \includegraphics[width=0.9\linewidth]{imgs/example1_brute.png}
+  \includegraphics[width=0.95\linewidth]{imgs/example1_brute.png}
+\end{minipage}
+\hfill
+\begin{minipage}[hc]{0.32\textwidth}
+  \centering
+  Our derived computation takes $\BigO{n^2}$: 
+  \includegraphics[width=0.95\linewidth]{imgs/example1_opt.png}
 \end{minipage}
 \vspace{1cm}
 
@@ -213,7 +224,7 @@ Define a grammar G of operators
 Given some target expression $T$ within the domain of $G$
 e.g. sum(sum(A*B,2),1). Find an identical expression that has lower computational 
 complexity i.e. avoids high complexity operators (like matrix multiplication).
-\vspace{1cm}
+\vspace{0.2cm}
 
 \begin{minipage}[hc]{0.47\textwidth}
   \begin{center}
@@ -246,28 +257,28 @@ Polynomials of degree 2
   A^2, (A^2)^T, AA^T, A^TA, \sum_i (AA^T)_{i, :}, \dots \\
 \end{align*}
 \end{minipage}
-\vspace{-1cm}
+\vspace{-0.4cm}
 \begin{center}
   {\bf Space grows exponentially fast.}
 \end{center}
-\vspace{-1cm}
+\vspace{-0.4cm}
 
 \PosterBox{Representing Symbolic Expressions}
-Target expression: sum(sum(A*A’,1),2)
+Expression: sum(sum(A*A’,1),2) \\
 Use $P$ copies of $A$
 
 
-Representation of target is descriptor vector (length $P$)
+Representation of target is a {\bf descriptor vector} (length $P$)
 \begin{itemize}
-  \item Each element is evaluation one copy
+  \item Each element is evaluation of one copy of expression
   \item Vector is of length $P$
   \item If descriptors match equivalent expressions.
+  \item P is set by hand to be large
+  \item If descriptors match then {\bf expressions are equivalent}
 \end{itemize}
 
 Using is unstable, so use      
 integers modulo $q$, where $q$ is large prime.
-
-
 
 
 \end{PosterColumn}
@@ -278,13 +289,13 @@ integers modulo $q$, where $q$ is large prime.
 \begin{minipage}[hc]{0.57\textwidth}
   Consider RBM partition function:
   \begin{align*}
-    \sum_{v,h} \exp(v^TWh) = \sum_{k=0}^\infty \sum_{v,h} \frac{(v^TWh)^k}{k!}\\
-    v \in \{0, 1\}^n\\
-    h \in \{0, 1\}^m
+    &\sum_{v,h} \exp(v^TWh) = \sum_{k=0}^\infty \sum_{v,h} \frac{(v^TWh)^k}{k!}\\
+    &v \in \{0, 1\}^n\\
+    &h \in \{0, 1\}^m
   \end{align*}
   {\bf 1st term in Taylor series:}
   \begin{align*}
-    \sum_{k=0}^\infty \sum_{v,h} v^TWh = 2^{n + m - 2} \sum_{i, j}W_{i, j}
+    \sum_{v,h} v^TWh = 2^{n + m - 2} \sum_{i, j}W_{i, j}
   \end{align*}
 \end{minipage}
 \hfill
@@ -296,22 +307,18 @@ integers modulo $q$, where $q$ is large prime.
 \end{minipage}
 \vspace{0.5cm}
 \\
-
   {\bf 2st term in Taylor series:}
   \begin{align*}
-    \sum_{k=0}^\infty \sum_{v,h} (v^TWh)^2 = 2^{n + m - 4} [\sum_{i, j}W_{i, j}^2 + (\sum_{i, j} W_{i, j})^2 + \sum_i (\sum_j W_{i, j})^2 + \sum_j (\sum_i W_{i, j})^2]
+    \sum_{v,h} (v^TWh)^2 = 2^{n + m - 4} [\sum_{i, j}W_{i, j}^2 + (\sum_{i, j} W_{i, j})^2 + \sum_i (\sum_j W_{i, j})^2 + \sum_j (\sum_i W_{i, j})^2]
   \end{align*}
   Note that identity computes in $\BigO{nm}$ versus $\BigO{2^{n + m}}$ for original expression.
-\vspace{0.7cm}
-
-
+\vspace{0.1cm}
 \PosterBox{Prior Over Computation Trees}
-
-Recall goal: find equivalent expressions to target
-i.e. descriptors match
-Restrict grammar to use operators with lower complexity than target
-If any match found then sure to be efficient w.r.t. target
-\vspace{-0.8cm}
+Recall goal: find equivalent expressions to target  \\
+i.e. descriptors match \\
+Restrict grammar to use operators with lower complexity than target \\
+If any match found then sure to be efficient w.r.t. target \\
+\vspace{-1cm}
 \begin{center}
 {\bf Want to learn a good \textcolor{red}{prior} over expressions}
 \end{center}
@@ -332,25 +339,28 @@ Example:
   Valid operators to append:\\
   \includegraphics[width=0.8\linewidth]{imgs/possible.png}
 \end{minipage}
-\vspace{1.5cm}
+\vspace{0.5cm}
 \\
 \textcolor{mpigreen}{Scorer} ranks each possibility (i.e. how likely they are to lead to the solution), using {\bf \textcolor{red}{prior}}.
-\vspace{0.5cm}
+\vspace{0.1cm}
 \\
+
 \begin{minipage}[hc]{\textwidth}
+  \centering
   \begin{center}
-    \begin{tabular}{lll}
-      \includegraphics[width=0.2\linewidth]{imgs/prior1.png} \hspace{4cm} & Score 0.3 \\
-                                                                          & & \\
-      \includegraphics[width=0.2\linewidth]{imgs/prior2.png}  & Score 0.05 \\
-                                                                          & & \\
-      \includegraphics[width=0.2\linewidth]{imgs/prior3.png}  & Score 0.65 \\
-    \end{tabular}
+      \begin{tabular}{|CD|CD|CD|}
+        \hline
+        \includegraphics[width=\linewidth]{imgs/prior1.png} & : Score 0.3 &
+        \includegraphics[width=\linewidth]{imgs/prior2.png} & : Score 0.05 &
+        \includegraphics[width=\linewidth]{imgs/prior3.png} & : Score 0.65 \\
+        \hline
+      \end{tabular}
   \end{center}
 \end{minipage}
-\vspace{0.5cm}
+\vspace{0.1cm}
 \\
 Sample new operator according to scorer probabilities
+\vspace{-0.1cm}
 
 \PosterBox{Scorer Strategy}
 \vspace{-1cm}
@@ -371,30 +381,33 @@ Refine prior using new solution.
       \hline
         & Target Expression & Efficient expression \\
       \hline
-      K = 1 \hspace{1cm} & $\sum_i a_i \hspace{1cm} $ & sum(sum(A, 1), 2) \\
+      K = 1 \hspace{1cm} & $\sum_i a_i \hspace{1cm} $ & {\footnotesize sum(sum(A, 1), 2)} \\
       \hline
-      K = 2 & $\sum_{i,j} a_ia_j $ & 0.5 * (sum((repmat(sum(A', 1), 1, m) .* A), 2)) + \\
-            & & -0.5 * (sum((A .* A)', 1))) \\
+      K = 2 & $\sum_{i,j} a_ia_j $ & {\footnotesize 0.5 * (sum((repmat(sum(A', 1), 1, m) .* A), 2)) + -0.5 * (sum((A .* A)', 1)))} \\
       \hline
-      K = 3 & $\sum_{i, j, k}a_ia_ja_k$ & (-0.5 * (sum((repmat(sum((A' .* A'), 1), 1, m) .* A), 2)) + \\
-      & & 1/3 * (sum(((A' .* A')' .* A), 2)) + \\
-      & & 1/6 * (sum((A' .* repmat(sum((repmat( \\
-      & & sum(A', 1), 1, m) .* A), 2), m, 1)), 1))) \\
+      K = 3 & $\sum_{i, j, k}a_ia_ja_k$ & {\footnotesize (-0.5 * (sum((repmat(sum((A' .* A'), 1), 1, m) .* A), 2)) + 1/3 * (sum(((A' .* A')' .* A), 2)) +} \\
+      & & {\footnotesize 1/6 * (sum((A' .* repmat(sum((repmat(sum(A', 1), 1, m) .* A), 2), m, 1)), 1)))} \\
       \hline
     \end{tabular}
   \end{center}
+  \begin{center}
+    This solutions are the base for the further training, i.e. {\bf curriculum learning}.
+  \end{center}
 \end{minipage}
+\vspace{0.2cm}
 
-\end{PosterColumn}
-\begin{PosterColumn} 
-
-\PosterBox{$n$-gram}
+\PosterBox{$n$-gram prior}
 \begin{minipage}[hc]{\textwidth}
   \centering
   \includegraphics[width=0.40\linewidth]{imgs/bigram.png}
   \hfill
   \includegraphics[width=0.40\linewidth]{imgs/histogram.png}
 \end{minipage}
+\begin{center}
+  example: bigrams
+\end{center}
+\end{PosterColumn}
+\begin{PosterColumn} 
 
 \PosterBox{Experiments in discovering identities}
 $5$ families of expressions (vary degree $k$)
@@ -410,23 +423,38 @@ $5$ families of expressions (vary degree $k$)
 Start with $k=1$ and work up to $k=15$.
 Time cut-off: $600$ seconds
 Repeat $10$ times, measure fraction successful
-
-
-\includegraphics[width=0.24\linewidth]{imgs/plot_aat.png}
-\includegraphics[width=0.24\linewidth]{imgs/plot_aaa.png}
-\includegraphics[width=0.24\linewidth]{imgs/plot_sym.png}
-\includegraphics[width=0.24\linewidth]{imgs/plot_rbm1.png}
+\\
+\vspace{0.05cm}
+\begin{minipage}[hc]{\textwidth}
+  \centering
+  \begin{center}
+      \begin{tabular}{cccc}
+        $\sum (AA^T)_k$ &
+        $\sum ((A.* A)A^T)_k$ &
+        $\sum_{i, j, k} a_ia_ja_k$ &
+        $\sum_{v \in \{0, 1\}^n} (v^tA)^k$ \\
+        \includegraphics[width=0.24\linewidth]{imgs/plot_aat.png} &
+        \includegraphics[width=0.24\linewidth]{imgs/plot_aaa.png} &
+        \includegraphics[width=0.24\linewidth]{imgs/plot_sym.png} &
+        \includegraphics[width=0.24\linewidth]{imgs/plot_rbm1.png} \\
+      \end{tabular}
+  \end{center}
+\end{minipage}
 \\
 {\bf RBM-2}\\
 No scorer strategy able to get beyond $k=5$ 
 However, the $k = 5$ solution was found by the RNN consistently faster than the random strategy ($100 \pm 12$ vs $438 \pm 77$ secs). 
 \PosterBox{Recurrsive neural network strategy}
 $n$-gram has a shallow understanding of mathematical expressions (up to depth $n$).
-We trained recurrsive neural network to identify equivalent expressions.
+We trained recurrsive neural network to identify equivalent expressions.\\
+We pre-train Recurrsive neural networks to ``undestand'' math expressions, via
+classification objective.\\
 \begin{minipage}[hc]{\textwidth}
-  \includegraphics[width=0.45\linewidth]{imgs/tnn.png}
   \hfill
-  \includegraphics[width=0.45\linewidth]{imgs/tnn2.png}
+  \includegraphics[width=0.4\linewidth]{imgs/tnn.png}
+  \hfill
+  \includegraphics[width=0.4\linewidth]{imgs/tnn2.png}
+  \hfill
 \end{minipage}
 
 \begin{itemize}
@@ -438,21 +466,28 @@ We trained recurrsive neural network to identify equivalent expressions.
 Training examples for degree k=6:\\
 \includegraphics[width=0.98\linewidth]{imgs/classes.png}
 \includegraphics[width=0.98\linewidth]{imgs/print_trees.png}
-\vspace{-0.5cm}
+\vspace{-0.6cm}
 \begin{center}
 Note: no explicit knowledge of math operators
 \end{center}
-\vspace{-0.5cm}
+\vspace{-0.6cm}
 \PosterBox{Related work}
 \vspace{-0.8cm}
 \begin{itemize}
   \item Recent efforts to combine ML with theorem provers, e.g. Bridge et al. 2014
-  \item Distilling Free-Form Natural Laws from Experimental Data, Michael Schmidt and Hod Lipson.  Science, Vol. 324, April 3, 2009.
   \item Recursive neural nets in NLP Socher et al. 2013, Luong et al., learning logics Bowman et al. 2014 for logical predicates
   \item Learning to Execute, Wojciech Zaremba \& Ilya Sutskever, arXiv 1410.4615, 2014
 \end{itemize}
-\end{PosterColumn}
 
+\PosterBox{Conclusion}
+\vspace{-1cm}
+\begin{itemize}
+  \item Mathematical identities can be learnt with pattern matching.
+  \item Solutions to some problems allow to build a prior for other.
+  \item Recurssive neural network can simulate simple mathematical operators.
+\end{itemize}
+
+\end{PosterColumn}
 %%%
 \end{poster}
 \end{document}
