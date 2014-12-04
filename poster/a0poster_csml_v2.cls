@@ -233,11 +233,21 @@
 \vspace{1cm}%
 %
 \hfill
-\begin{minipage}{0.1\textwidth}
-\includegraphics[width=\textwidth]{\LeftLogoFile}
+\begin{minipage}{0.15\textwidth}
+  \begin{minipage}{0.49\textwidth}
+    \hfill
+    \includegraphics[width=0.7\textwidth]{\LogoFileA}
+    \hfill
+  \end{minipage}
+    \hfill
+  \begin{minipage}{0.49\textwidth}
+    \hfill
+  \includegraphics[width=0.9\textwidth]{\LogoFileB}
+    \hfill
+  \end{minipage}
 \end{minipage}
 \hfill%
-\begin{minipage}{0.7\textwidth} %authors and addresses:
+\begin{minipage}{0.59\textwidth} %authors and addresses:
 \begin{center}
 \raisebox{1.5cm}{\usebox{\PosterTitle}}\\
 \raisebox{0cm}{\usebox{\PosterAuthor}}\\
@@ -246,8 +256,18 @@
 \end{center}
 \end{minipage}
 \hfill%
-\begin{minipage}{0.1\textwidth}
-\includegraphics[width=\textwidth]{\RightLogoFile}
+\begin{minipage}{0.15\textwidth}
+  \begin{minipage}{0.49\textwidth}
+    \hfill
+  \includegraphics[width=0.9\textwidth]{\LogoFileC}
+    \hfill
+  \end{minipage}
+  \begin{minipage}{0.49\textwidth}
+    \hfill
+  \includegraphics[width=0.5\textwidth]{\LogoFileD}
+    \hfill
+  \end{minipage}
+    \hfill
 \end{minipage}
 \hfill%
 %
@@ -259,8 +279,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newcommand{\headerMpi}{%
-\newcommand{\LeftLogoFile}{csml_logo_vector2}
-\newcommand{\RightLogoFile}{csml_logo_vector2}
+\newcommand{\LogoFileA}{imgs/nyu.jpg}
+\newcommand{\LogoFileB}{imgs/mimuw.png}
+\newcommand{\LogoFileC}{imgs/google.jpg}
+\newcommand{\LogoFileD}{imgs/facebook.jpg}
 \headerCustomLogo
 }
 
